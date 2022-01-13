@@ -1,0 +1,12 @@
+release/board.o
+release/case.o
+release/cornercase.o
+release/dice.o
+release/estate.o
+release/main.o
+release/mainwindow.o
+release/player.o
+release/pioche.o
+release/taxe.o
+release/gare.o
+release/moc_mainwindow.o

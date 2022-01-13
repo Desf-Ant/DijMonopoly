@@ -9,11 +9,29 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    board.cpp \
+    case.cpp \
+    cornercase.cpp \
+    dice.cpp \
+    estate.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    player.cpp \
+    pioche.cpp \
+    taxe.cpp \
+    gare.cpp
 
 HEADERS += \
-    mainwindow.h
+    board.h \
+    case.h \
+    cornercase.h \
+    dice.h \
+    estate.h \
+    mainwindow.h \
+    player.h \
+    pioche.h \
+    taxe.h \
+    gare.h
 
 FORMS += \
     mainwindow.ui

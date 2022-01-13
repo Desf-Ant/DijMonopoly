@@ -1,0 +1,12 @@
+debug/board.o
+debug/case.o
+debug/cornercase.o
+debug/dice.o
+debug/estate.o
+debug/main.o
+debug/mainwindow.o
+debug/player.o
+debug/pioche.o
+debug/taxe.o
+debug/gare.o
+debug/moc_mainwindow.o
