@@ -3,13 +3,13 @@
 Taxe::Taxe(){
 }
 
-Taxe::Taxe(int x, int y, int numero, std::string nom, double prix) {
+Taxe::Taxe(int x, int y, int numero, std::string name, double price) {
     this->x = x;
     this->y = y;
     this->numero = numero;
-    this->nom = nom;
-    this->prix = prix;
+    this->name = name;
+    this->price = price;
 }
 
-void Taxe::payer(){
+void Taxe::pay(){
 }

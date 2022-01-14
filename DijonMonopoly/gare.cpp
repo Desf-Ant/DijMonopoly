@@ -3,19 +3,42 @@
 Gare::Gare(){
 }
 
-Gare::Gare(int x, int y, int numero, std::string nom, double prix) {
+Gare::Gare(int x, int y, int numero, std::string name, double price) {
     this->x = x;
     this->y = y;
     this->numero = numero;
-    this->nom = nom;
-    this->prix = prix;
+    this->name = name;
+    this->price = price;
 }
 
-void Gare::acheter(){
+std::string Gare::getName() {
+    return this->name;
 }
 
-void Gare::enchere(){
+Player* Gare::getOwner(){
+    return this->owner;
+}
+double Gare::getPrice() {
+    return this->price;
 }
 
-void Gare::payer(){
+int Gare::getHouse() {
+    return this->house;
+}
+
+void Gare::setOwner(Player* newOwner) {
+    this->owner = newOwner;
+}
+
+void Gare::setHouse(int numberHouse){
+    this->house = numberHouse;
+}
+
+void buy() {
+}
+
+void bid() {
+}
+
+void payRent(){
 }

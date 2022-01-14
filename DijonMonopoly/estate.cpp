@@ -5,7 +5,7 @@ Estate::Estate()
 
 }
 
-Estate::Estate(int x, int y, int numero, std::string name, colorEstate, double price) {
+Estate::Estate(int x, int y, int numero, std::string name, colorEstate color, double price) {
     this->owner = nullptr;
     this->house = 0;
     this->playerOnIt = nullptr;
@@ -43,13 +43,10 @@ void Estate::setHouse(int numberHouse){
 }
 
 void buy() {
-
 }
 
 void bid() {
-
 }
 
 void payRent(){
-
 }
