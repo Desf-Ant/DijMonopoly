@@ -1,22 +1,23 @@
-#ifndef GARE_H
-#define GARE_H
-#include "case.h"
+#ifndef COMPANY_H
+#define COMPANY_H
+
 #include <string>
+
+#include "enumHelper.h"
+#include "case.h"
 #include "player.h"
 
-class Gare : public Case
+class Company : public Case
 {
-
 private:
     std::string name;
     Player* owner;
     double price;
-
 public:
-    Gare();
-    Gare(int x, int y, int numero, std::string name, double price);
+    Company();
+    Company(int x, int y, int numero, std::string name, double price);
 
-    typeOfCase getTypeCase(void) const;
+    typeOfCase getTypeCase (void) const;
     std::string getName(void) const;
     int getPrice(void) const;
     Player* getOwner(void) const;
@@ -25,7 +26,7 @@ public:
 
     void buy();
     void bid();
-    void payRent(Player* buyer);
+    void payRent(Player* p);
 };
 
-#endif // GARE_H
+#endif // COMPANY_H

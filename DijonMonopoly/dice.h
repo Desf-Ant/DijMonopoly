@@ -8,7 +8,7 @@ private:
     int sides;
 public:
     Dice();
-    static int throwDice();
+    int throwDice();
 };
 
 #endif // DICE_H

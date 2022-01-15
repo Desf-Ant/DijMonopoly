@@ -4,7 +4,7 @@
 #include <vector>
 #include "case.h"
 
-class Pioche {
+class Pioche : public Case{
 protected:
     std::vector <std::string> cartesCommu;
 

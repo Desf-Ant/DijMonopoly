@@ -1,14 +1,27 @@
-#include "Taxe.h"
+#include "taxe.h"
 
 Taxe::Taxe(){
 }
 
-Taxe::Taxe(int x, int y, int numero, std::string nom, double prix) {
+Taxe::Taxe(int x, int y, int numero, std::string name, double price) {
+    this->typeCase = typeOfCase::Taxe;
     this->x = x;
     this->y = y;
     this->numero = numero;
-    this->nom = nom;
-    this->prix = prix;
+    this->name = name;
+    this->price = price;
+}
+
+typeOfCase Taxe::getTypeCase() const{
+    return this->typeCase;
+}
+
+std::string Taxe::getName() const {
+    return this->name;
+}
+
+int Taxe::getPrice() const {
+    return this->price;
 }
 
 void Taxe::payer(){

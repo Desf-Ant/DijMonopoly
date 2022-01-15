@@ -5,7 +5,8 @@ Estate::Estate()
 
 }
 
-Estate::Estate(int x, int y, int numero, std::string name, colorEstate, double price) {
+Estate::Estate(int x, int y, int numero, std::string name, colorEstate color, double price) {
+    this->typeCase = typeOfCase::Estate;
     this->owner = nullptr;
     this->house = 0;
     this->playerOnIt = nullptr;
@@ -17,20 +18,23 @@ Estate::Estate(int x, int y, int numero, std::string name, colorEstate, double p
     this->price = price;
 }
 
-std::string Estate::getName() {
+typeOfCase Estate::getTypeCase() const {
+    return this->typeCase;
+}
+std::string Estate::getName() const{
     return this->name;
 }
-colorEstate Estate::getColor(){
+colorEstate Estate::getColor() const{
     return this->color;
 }
-Player* Estate::getOwner(){
+Player* Estate::getOwner() const{
     return this->owner;
 }
-double Estate::getPrice() {
+double Estate::getPrice() const {
     return this->price;
 }
 
-int Estate::getHouse() {
+int Estate::getHouse() const{
     return this->house;
 }
 
@@ -50,6 +54,12 @@ void bid() {
 
 }
 
-void payRent(){
-
+void Estate::payRent(Player* buyer){
+    // current player pay rent to the owner
+    if (buyer->getMoney() >= this->getPrice()) {
+        this->owner->earnMoney(this->getPrice());
+        buyer->earnMoney(-this->getPrice());
+    } else {
+        // buyer loose or need to sell
+    }
 }

@@ -4,3 +4,7 @@ Case::Case()
 {
 
 }
+
+typeOfCase Case::getTypeCase() const{
+    return this->typeCase;
+}

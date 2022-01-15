@@ -31,6 +31,10 @@ void Player::setMoney(int inputArgent) {
     money = inputArgent;
 }
 
+void Player::setInJail(bool isInJail) {
+    this->isInJail = isInJail;
+}
+
 std::string Player::getName() const{
     return this->name ;
 }
@@ -49,4 +53,21 @@ int Player::getMoney() const{
 
 bool Player::getIsInJail() const {
     return this->isInJail;
+}
+
+void Player::advanceTo(int nb) {
+    this->setLocalisation((this->getLocalisation() + nb)%39);
+    std::cout << "Player " << this->getName() << "se trouve sur la case n°" << this->getLocalisation();
+}
+
+void Player::earnMoney(int money) {
+    this->money += money;
+    std::cout << "Player " << this->getName() << " earn " << money << " the total is equivalent to " << this->getMoney() ;
+}
+
+void Player::looseMoney(int money) {
+    this->money -= money;
+    if (this->money < 0) {
+        // the player loose or needs to sell
+    }
 }

@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     board.cpp \
     case.cpp \
+    company.cpp \
     cornercase.cpp \
     dice.cpp \
     estate.cpp \
@@ -24,8 +25,10 @@ SOURCES += \
 HEADERS += \
     board.h \
     case.h \
+    company.h \
     cornercase.h \
     dice.h \
+    enumHelper.h \
     estate.h \
     mainwindow.h \
     player.h \

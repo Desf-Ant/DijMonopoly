@@ -6,10 +6,15 @@ CornerCase::CornerCase()
 }
 
 CornerCase::CornerCase(int x, int y, int numero, typeCornerCase typeCorner) {
+    this->typeCase = typeOfCase::CornerCase;
     this->x = x;
     this->y = y;
     this->numero = numero;
     this->type = typeCorner;
+}
+
+typeOfCase CornerCase::getTypeCase() const {
+    return this->typeCase;
 }
 
 typeCornerCase CornerCase::getType() const{
@@ -31,19 +36,26 @@ std::string CornerCase::getName() const{
     }
 }
 
-void CornerCase::actionRelated (void) {
+void CornerCase::actionRelated (Player* p) {
     switch(this->type) {
-        case typeCornerCase::Depart :
-            std::cout << "Vous recevez le double ! 400";
+        case typeCornerCase::Depart : {
+            std::cout << "Vous recevez le double ! 400" << std::endl;
+            p->earnMoney(400);
             break;
-        case typeCornerCase::Police :
-            std::cout << "Vous allez en prison sans passer par la case départ";
+        }
+        case typeCornerCase::Police : {
+            std::cout << "Vous allez en prison sans passer par la case départ" << std::endl;
+            p->setInJail(true);
+            p->setLocalisation(10); // Localisation of the zonzon
             break;
-        case typeCornerCase::Parc :
-            std::cout << "Vous pouvez flâner au parc, tranquillement";
+        }
+        case typeCornerCase::Parc : {
+            std::cout << "Vous pouvez flâner au parc, tranquillement" << std::endl;
             break;
-        case typeCornerCase::Prison :
-            std::cout << "Vous rendez visite aux criminels";
+        }
+        case typeCornerCase::Prison : {
+            std::cout << "Vous rendez visite aux criminels" << std::endl;
             break;
+        }
     }
 }

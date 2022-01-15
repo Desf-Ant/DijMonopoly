@@ -5,7 +5,7 @@
 #include "iostream"
 #include "case.h"
 
-typedef enum typeCornerCase { Depart, Prison, Parc, Police } typeCornerCase;
+#include "enumHelper.h"
 
 class CornerCase : public Case
 {
@@ -15,10 +15,11 @@ public:
     CornerCase();
     CornerCase(int x, int y, int numero, typeCornerCase typeCorner);
 
+    typeOfCase getTypeCase(void) const;
     typeCornerCase getType(void) const;
     std::string getName(void) const;
 
-    void actionRelated(void);
+    void actionRelated(Player* p);
 };
 
 #endif // CORNERCASE_H

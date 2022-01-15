@@ -4,10 +4,9 @@
 #include <string>
 #include "case.h"
 #include "player.h"
+#include "enumHelper.h"
 
-typedef enum colorEstate {Brown, LightBlue, Purple, Orange, Red, Yellow, Green, DarkBlue} colorEstate ;
-
-class Estate : public virtual Case
+class Estate : public Case
 {
 private:
     std::string name;
@@ -19,18 +18,19 @@ public:
     Estate();
     Estate(int x, int y, int numero, std::string name, colorEstate color, double price);
 
-    std::string getName();
-    colorEstate getColor();
-    Player* getOwner();
-    double getPrice();
-    int getHouse();
+    typeOfCase getTypeCase(void) const;
+    std::string getName() const;
+    colorEstate getColor() const;
+    Player* getOwner() const;
+    double getPrice() const;
+    int getHouse() const;
 
     void setOwner(Player* newOwner);
     void setHouse(int numberHouse);
 
     void buy();
     void bid();
-    void payRent();
+    void payRent(Player* buyer);
 };
 
 #endif // ESTATE_H

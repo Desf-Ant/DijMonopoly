@@ -3,19 +3,44 @@
 Gare::Gare(){
 }
 
-Gare::Gare(int x, int y, int numero, std::string nom, double prix) {
+Gare::Gare(int x, int y, int numero, std::string name, double price) {
+    this->typeCase = typeOfCase::Gare;
     this->x = x;
     this->y = y;
     this->numero = numero;
-    this->nom = nom;
-    this->prix = prix;
+    this->name = name;
+    this->price = price;
+    this->owner = nullptr;
 }
 
-void Gare::acheter(){
+typeOfCase Gare::getTypeCase() const{
+    return this->typeCase;
 }
 
-void Gare::enchere(){
+std::string Gare::getName() const {
+    return this->name;
 }
 
-void Gare::payer(){
+int Gare::getPrice() const {
+    return this->price;
+}
+
+Player* Gare::getOwner() const {
+    return this->owner;
+}
+
+void Gare::setOwner(Player *p) {
+    this->owner = p;
+}
+
+void Gare::buy(){
+}
+
+void Gare::bid(){
+}
+
+void Gare::payRent(Player *buyer){
+    // current player pay rent to the owner
+    buyer->looseMoney(this->getPrice());
+    this->owner->earnMoney(this->getPrice());
 }
