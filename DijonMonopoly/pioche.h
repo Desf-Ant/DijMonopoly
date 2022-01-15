@@ -4,17 +4,19 @@
 #include <vector>
 #include "case.h"
 
-class Pioche : public Case{
+typedef enum typeDrawCard { ComCard, ChanceCard } typeDrawCard;
+
+class DrawCard : public Case {
 protected:
-    std::vector <std::string> cartesCommu;
-
-    std::vector <std::string> cartesChance;
-
-    int taille = 16;
+    std::vector <std::string> ComCard;
+    std::vector <std::string> ChanceCard;
+    typeDrawCard type;
 
 public:
-    void Piocher();
+    DrawCard();
+    DrawCard(int x, int y, int numero, typeDrawCard typeDraw);
 
+    void Draw(typeDrawCard typeDraw);
 };
 
 #endif // PIOCHE_H

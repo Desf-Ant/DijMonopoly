@@ -1,7 +1,7 @@
 #ifndef GARE_H
 #define GARE_H
-#include "case.h"
 #include <string>
+#include "case.h"
 #include "player.h"
 
 class Gare : public Case

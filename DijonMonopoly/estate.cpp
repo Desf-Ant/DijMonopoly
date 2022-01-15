@@ -47,19 +47,11 @@ void Estate::setHouse(int numberHouse){
 }
 
 void buy() {
-
 }
 
 void bid() {
-
 }
 
-void Estate::payRent(Player* buyer){
-    // current player pay rent to the owner
-    if (buyer->getMoney() >= this->getPrice()) {
-        this->owner->earnMoney(this->getPrice());
-        buyer->earnMoney(-this->getPrice());
-    } else {
-        // buyer loose or need to sell
-    }
+void payRent(){
+
 }
