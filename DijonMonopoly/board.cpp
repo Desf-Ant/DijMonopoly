@@ -12,12 +12,12 @@ Board::Board()
 void Board::createBoard() {
     this->cases.push_back(new class CornerCase(0, 0, 0, typeCornerCase::Depart));
     this->cases.push_back(new class Estate(0, 0, 1, "Rue Alix de Vergy", colorEstate::Brown, 60));
-    this->cases.push_back(new class Pioche());
+    this->cases.push_back(new class DrawCard());
     this->cases.push_back(new class Estate(0, 0, 3, "Place des Savoirs", colorEstate::Brown, 60));
     this->cases.push_back(new class Taxe(0, 0, 4, "Impôt sur le revenu", 200));
     this->cases.push_back(new class Gare(0, 0, 5, "Arrêt Grésille", 200));
     this->cases.push_back(new class Estate(0, 0, 6, "Rue Dubois", colorEstate::LightBlue, 100));
-    this->cases.push_back(new class Pioche());
+    this->cases.push_back(new class DrawCard());
     this->cases.push_back(new class Estate(0, 0, 8, "Rue des Marmuzots", colorEstate::LightBlue, 100));
     this->cases.push_back(new class Estate(0, 0, 9, "Rue Vannerie", colorEstate::LightBlue, 120));
     this->cases.push_back(new class CornerCase(0, 0, 10, typeCornerCase::Prison));
@@ -49,7 +49,7 @@ void Board::gameTurn() {
             break;
         }
         case typeOfCase::Draw : {
-            class Pioche* d = static_cast<class Pioche*>(this->getCaseOfCurrentPlayer());
+            class DrawCard* d = static_cast<class DrawCard*>(this->getCaseOfCurrentPlayer());
             std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a Draw case : " << d->getTypeCase() << std::endl;
             this->onDrawCase(d);
             break;
@@ -154,6 +154,6 @@ void Board::onCompanyCase(class Company *c) {
     }
 }
 
-void Board::onDrawCase(class Pioche *d) {
+void Board::onDrawCase(class DrawCard *d) {
     // drawing a card
 }

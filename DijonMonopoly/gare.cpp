@@ -20,9 +20,6 @@ typeOfCase Gare::getTypeCase() const{
 std::string Gare::getName() const {
     return this->name;
 }
-double Gare::getPrice() {
-    return this->price;
-}
 
 int Gare::getPrice() const {
     return this->price;

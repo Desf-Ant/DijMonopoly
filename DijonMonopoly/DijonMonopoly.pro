@@ -14,11 +14,11 @@ SOURCES += \
     company.cpp \
     cornercase.cpp \
     dice.cpp \
+    drawCard.cpp \
     estate.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    pioche.cpp \
     taxe.cpp \
     gare.cpp
 
@@ -28,11 +28,11 @@ HEADERS += \
     company.h \
     cornercase.h \
     dice.h \
+    drawCard.h \
     enumHelper.h \
     estate.h \
     mainwindow.h \
     player.h \
-    pioche.h \
     taxe.h \
     gare.h
 

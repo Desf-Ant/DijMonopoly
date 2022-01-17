@@ -1,5 +1,5 @@
-#ifndef PIOCHE_H
-#define PIOCHE_H
+#ifndef DRAWCARD_H
+#define DRAWCARD_H
 #include <string>
 #include <vector>
 #include "case.h"
@@ -19,4 +19,4 @@ public:
     void Draw(typeDrawCard typeDraw);
 };
 
-#endif // PIOCHE_H
+#endif // DRAWCARD_H

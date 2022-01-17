@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVBoxLayout>
 
 //QT_BEGIN_NAMESPACE
 //namespace Ui { class MainWindow; }
@@ -12,7 +13,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private:
-    QRect board;
+    QWidget* centre;
+    QRect* board;
+    QVBoxLayout* vbox;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

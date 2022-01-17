@@ -46,12 +46,14 @@ void Estate::setHouse(int numberHouse){
     this->house = numberHouse;
 }
 
-void buy() {
+void Estate::buy() {
 }
 
-void bid() {
+void Estate::bid() {
 }
 
-void payRent(){
-
+void Estate::payRent(Player* buyer){
+    // current player pay rent to the owner
+    buyer->looseMoney(this->getPrice());
+    this->owner->earnMoney(this->getPrice());
 }

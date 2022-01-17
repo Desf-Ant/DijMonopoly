@@ -6,7 +6,7 @@
 #include "player.h"
 #include "case.h"
 #include "dice.h"
-#include "pioche.h"
+#include "drawCard.h"
 #include "taxe.h"
 #include "gare.h"
 #include "enumHelper.h"
@@ -40,7 +40,7 @@ public:
     void onCornerCase(class CornerCase* c);
     void onTaxeCase(class Taxe* t);
     void onCompanyCase(class Company* c);
-    void onDrawCase(class Pioche* d);
+    void onDrawCase(class DrawCard* d);
 };
 
 #endif // BOARD_H
