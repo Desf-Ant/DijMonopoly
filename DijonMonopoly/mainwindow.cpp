@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     this->setFixedSize(this->size());
     this->initComponents();
     this->initLayout();
-    this->initCases();
+    this->initSlots();
+    //this->board = new Board(refreshView);
+    this->board = new Board();
+    this->t = std::time(0);
 }
 
 MainWindow::~MainWindow()
@@ -17,6 +20,9 @@ MainWindow::~MainWindow()
     delete(this->view);
 }
 
+void MainWindow::startMainWindow() {
+    this->initPlayer();
+}
 
 void MainWindow::initComponents() {
     this->scene = new QGraphicsScene();
@@ -31,11 +37,28 @@ void MainWindow::initComponents() {
     monopolyText->setPos(410,575);
     monopolyText->setRotation(-45);
     this->scene->addItem(monopolyText);
+
+    // Throw dice button
+    this->throwDiceBtn = this->scene->addPixmap(QPixmap("../../../../Autres/dice.png"));
+    this->throwDiceBtn->setScale(0.2);
+    this->throwDiceBtn->setFlag(QGraphicsItem::ItemIsSelectable, true);
+    // text which indicates score dice
+    this->scoreDice = this->scene->addText("");
+    this->scoreDice->setDefaultTextColor(QColor(Qt::black));
 }
 
 void MainWindow::initLayout() {
     this->setCentralWidget(this->view);
+    this->initCases();
+
+    this->throwDiceBtn->setPos(700-(this->throwDiceBtn->boundingRect().size().rwidth()*0.2/2),610);
+    this->scoreDice->setPos(700-(this->scoreDice->boundingRect().size().rwidth()/2), 580);
 }
+
+void MainWindow::initSlots() {
+    QWidget::connect(this->scene, SIGNAL(selectionChanged()),this, SLOT(whichCaseIsSelected()));
+}
+
 
 void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/depart.png")));
@@ -145,4 +168,82 @@ void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/liberte.png")));
     this->cases[39]->setPos(997,717);
     this->cases[39]->setRotation(-90);
+}
+
+void MainWindow::initPlayer() {
+    // make the pop up at the begining
+    this->popPlayer = new PopUpAddPlayer(this);
+    this->popPlayer->show();
+}
+
+void MainWindow::initPlayerUI(std::vector<std::string> names) {
+    // Create all the ui for the player
+    for (int i=0; i< (int) names.size() ; i++) {
+        QGraphicsTextItem* text = new QGraphicsTextItem( QString::fromStdString( names[i] ));
+        QGraphicsTextItem* money = new QGraphicsTextItem( "2000 M" );
+        QGraphicsTextItem* nb = new QGraphicsTextItem( "Nombre Propriété : 0" );
+        QGraphicsTextItem* p = new QGraphicsTextItem( "'Libéré de prison' : 0" );
+        QGraphicsRectItem* player = this->scene->addRect(0,0,30,30, QPen(Qt::red), QBrush(Qt::red));
+        this->board->addPlayer(new Player(names[i], "chien",2000));
+        this->physicalPlayers.push_back(player);
+        this->playersNames.push_back(text);
+        this->playersMoney.push_back(money);
+        this->playersNbProp.push_back(nb);
+        this->playersPrisonCard.push_back(p);
+        this->scene->addItem(text);
+        this->scene->addItem(money);
+        this->scene->addItem(nb);
+        this->scene->addItem(p);
+    }
+    this->physicalPlayers[0]->setPos(1022,742);
+    this->playersNames[0]->setPos(20,20);
+    this->playersMoney[0]->setPos(20,40);
+    this->playersNbProp[0]->setPos(20,60);
+    this->playersPrisonCard[0]->setPos(20,80);
+    this->physicalPlayers[1]->setPos(1022,782);
+    this->playersNames[1]->setPos(20,740);
+    this->playersMoney[1]->setPos(20,760);
+    this->playersNbProp[1]->setPos(20,780);
+    this->playersPrisonCard[1]->setPos(20,800);
+    this->physicalPlayers[2]->setPos(1062,742);
+    this->playersNames[2]->setPos(1137,20);
+    this->playersMoney[2]->setPos(1137,40);
+    this->playersNbProp[2]->setPos(1137,60);
+    this->playersPrisonCard[2]->setPos(1137,80);
+    this->physicalPlayers[3]->setPos(1062,782);
+    this->playersNames[3]->setPos(1137,740);
+    this->playersMoney[3]->setPos(1137,760);
+    this->playersNbProp[3]->setPos(1137,780);
+    this->playersPrisonCard[3]->setPos(1137,800);
+    this->scene->addRect(10,10,263,100, QPen(Qt::black));
+    this->scene->addRect(1127,10,263,100, QPen(Qt::black));
+    this->scene->addRect(10,730,263,100, QPen(Qt::black));
+    this->scene->addRect(1127,730,263,100, QPen(Qt::black));
+}
+
+void MainWindow::gameTurn() {
+    std::cout << std::endl <<"-------------------- Next Turn --------------------" << std::endl;
+    this->board->gameTurn();
+}
+
+void MainWindow::whichCaseIsSelected() {
+    this->scoreDice->setPlainText("ok");
+    this->scoreDice->setPos(700-(this->scoreDice->boundingRect().size().rwidth()/2), 580);
+    if (this->scene->selectedItems().size() > 0 && std::time(0) - this->t > 1) { // avoid boucing
+        this->t = std::time(0);
+        if (this->scene->selectedItems().at(0) == this->throwDiceBtn) {
+            this->gameTurn();
+        }
+    }
+    this->scene->clearSelection();
+}
+
+void MainWindow::refreshView() {
+    std::cout << "On est laaa" << std::endl;
+    this->refreshDice();
+}
+
+void MainWindow::refreshDice() {
+    //this->scoreDice->setPlainText( this->board->getCurrentPlayer()->getName() + " a fait ");
+    this->scoreDice->setPos(700-(this->scoreDice->boundingRect().size().rwidth()/2), 580);
 }

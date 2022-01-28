@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include <QMainWindow>
+
 #include "player.h"
 #include "case.h"
 #include "dice.h"
@@ -20,9 +22,11 @@ private:
     std::vector<Player*> players;
     std::vector<Case*> cases;
     int dices[2];
-    int playerIndex;
+    double playerIndex;
+    void (*refreshView) ();
 public:
     Board();
+    Board(void (*refreshView) ());
     void createBoard(void);
     void gameTurn(void);
     void check(void);
@@ -31,6 +35,10 @@ public:
     int getSumDice(void);
     Player* getCurrentPlayer(void) const ;
     Case* getCaseOfCurrentPlayer(void) const ;
+    std::vector<Player*> getPlayers(void) const;
+
+    void setPlayers (std::vector<Player*> p);
+    void addPlayer (Player* p);
 
     void throwDice(void);
     void nextPlayer(void);

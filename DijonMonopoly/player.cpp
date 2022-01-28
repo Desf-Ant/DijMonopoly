@@ -56,13 +56,13 @@ bool Player::getIsInJail() const {
 }
 
 void Player::advanceTo(int nb) {
-    this->setLocalisation((this->getLocalisation() + nb)%39);
-    std::cout << "Player " << this->getName() << "se trouve sur la case n°" << this->getLocalisation();
+    this->setLocalisation((this->getLocalisation() + nb)%40);
+    std::cout << "Player " << this->getName() << " is on the case n°" << this->getLocalisation() <<std::endl;
 }
 
 void Player::earnMoney(int money) {
     this->money += money;
-    std::cout << "Player " << this->getName() << " earn " << money << " the total is equivalent to " << this->getMoney() ;
+    std::cout << "Player " << this->getName() << " earn " << money << " the total is equivalent to " << this->getMoney() << std::endl;
 }
 
 void Player::looseMoney(int money) {
