@@ -17,6 +17,7 @@
 #include "popupaddplayer.h"
 #include "board.h"
 #include "player.h"
+#include "popupcard.h"
 
 #include <iostream>
 #include <vector>

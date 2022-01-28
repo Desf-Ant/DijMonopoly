@@ -17,6 +17,9 @@ public:
     DrawCard(int x, int y, int numero, typeDrawCard typeDraw);
 
     void Draw(typeDrawCard typeDraw);
+    std::string RecupFichiercom();
+    std::string RecupFichierchance();
+    std::string DrawChanceCard ();
 };
 
 #endif // DRAWCARD_H
