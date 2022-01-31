@@ -23,6 +23,7 @@ SOURCES += \
     popupbuyestate.cpp \
     popupbuygare.cpp \
     popuppayrent.cpp \
+    popupcard.cpp \
     taxe.cpp \
     gare.cpp
 
@@ -41,6 +42,7 @@ HEADERS += \
     popupbuyestate.h \
     popupbuygare.h \
     popuppayrent.h \
+    popupcard.h \
     taxe.h \
     gare.h
 

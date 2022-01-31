@@ -20,6 +20,7 @@
 #include "board.h"
 #include "player.h"
 #include "estate.h"
+#include "popupcard.h"
 
 #include <iostream>
 #include <vector>

@@ -23,6 +23,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::startMainWindow() {
     this->initPlayer();
+    PopUpCard* p = new PopUpCard(nullptr);
+    p->show();
 }
 
 void MainWindow::initComponents() {
