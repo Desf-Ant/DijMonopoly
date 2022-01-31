@@ -15,18 +15,16 @@
 #include <QColor>
 
 #include "popupaddplayer.h"
+#include "popupbuyestate.h"
+#include "popuppayrent.h"
 #include "board.h"
 #include "player.h"
+#include "estate.h"
 
 #include <iostream>
 #include <vector>
 #include <map>
 #include <ctime>
-
-//QT_BEGIN_NAMESPACE
-//namespace Ui { class MainWindow; }
-//QT_END_NAMESPACE
-
 
 class MainWindow : public QMainWindow
 {
@@ -41,6 +39,7 @@ private:
     QGraphicsView* view;
     QGraphicsRectItem* physicPlateau;
     QGraphicsPixmapItem* throwDiceBtn;
+    QGraphicsPixmapItem* cardInfo;
     QGraphicsTextItem* scoreDice;
     std::vector <QGraphicsPixmapItem*> cases;
     std::vector <QGraphicsRectItem*> physicalPlayers;
@@ -48,12 +47,17 @@ private:
     std::vector <QGraphicsTextItem*> playersMoney;
     std::vector <QGraphicsTextItem*> playersNbProp;
     std::vector <QGraphicsTextItem*> playersPrisonCard;
+    std::vector <QGraphicsRectItem*> playersRectUI;
     PopUpAddPlayer* popPlayer;
+    PopUpBuyEstate* popBuyEstate;
+    PopUpPayRent* popBuyRent;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void startMainWindow(void);
-
+    void refreshView();
+    void popUpBuyEstate(class Estate* e);
+    void popUpPayRent(class Estate* e, class Player* buyer);
 private:
     //Ui::MainWindow *ui;
     void initComponents(void);
@@ -62,10 +66,13 @@ private:
     void initCases(void);
     void initPlayer(void);
     void gameTurn(void);
-    void refreshView();
+
     void refreshDice(void);
+    void refreshPlayerUI(void);
+    void refreshPlayerPhysical(void);
 public slots :
     void initPlayerUI(std::vector<std::string> names);
+    void receiveBuyEstate(bool answer);
     void whichCaseIsSelected(void);
 };
 #endif // MAINWINDOW_H

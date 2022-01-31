@@ -6,6 +6,7 @@ Player::Player()
     piece = "Lion";
     name = "LeoBot";
     localisation = 0;
+    freeJailCard = 0;
 }
 
 Player::Player(std::string name, std::string piece, int money) {
@@ -35,12 +36,20 @@ void Player::setInJail(bool isInJail) {
     this->isInJail = isInJail;
 }
 
+void Player::addProperties(Case *c) {
+    this->properties.push_back(c);
+}
+
 std::string Player::getName() const{
     return this->name ;
 }
 
 std::string Player::getPiece() const{
     return this->piece;
+}
+
+std::vector<Case*> Player::getProperties() const {
+    return this->properties;
 }
 
 int Player::getLocalisation() const{
@@ -53,6 +62,18 @@ int Player::getMoney() const{
 
 bool Player::getIsInJail() const {
     return this->isInJail;
+}
+
+int Player::getFreeJailCard() const {
+    return this->freeJailCard;
+}
+
+void Player::addFreeJailCard() {
+    this->freeJailCard += 1;
+}
+
+void Player::removeFreeJailCard() {
+    this->freeJailCard -= 1;
 }
 
 void Player::advanceTo(int nb) {

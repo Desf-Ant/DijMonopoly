@@ -1,6 +1,8 @@
 #ifndef CASE_H
 #define CASE_H
 
+#include <QPointF>
+
 #include "enumHelper.h"
 #include "player.h"
 
@@ -15,6 +17,7 @@ protected :
 public:
     Case();
     typeOfCase getTypeCase(void) const;
+    QPointF getCoordCenter(void) const;
 };
 
 #endif // CASE_H
