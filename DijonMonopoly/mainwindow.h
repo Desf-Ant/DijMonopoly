@@ -19,7 +19,7 @@
 #include "popuppayrent.h"
 #include "board.h"
 #include "player.h"
-#include "estate.h"
+#include "case.h"
 #include "popupcard.h"
 
 #include <iostream>
@@ -57,8 +57,9 @@ public:
     ~MainWindow();
     void startMainWindow(void);
     void refreshView();
-    void popUpBuyEstate(class Estate* e);
-    void popUpPayRent(class Estate* e, class Player* buyer);
+    //void popUpBuyEstate(class Estate* e);
+    void popUpBuyEstate(Case* e);
+    void popUpPayRent(Case* e, class Player* buyer);
 private:
     //Ui::MainWindow *ui;
     void initComponents(void);

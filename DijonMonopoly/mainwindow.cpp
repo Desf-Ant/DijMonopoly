@@ -23,8 +23,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::startMainWindow() {
     this->initPlayer();
-    PopUpCard* p = new PopUpCard(nullptr);
-    p->show();
+//    PopUpCard* p = new PopUpCard(nullptr);
+//    p->show();
 }
 
 void MainWindow::initComponents() {
@@ -377,7 +377,8 @@ void MainWindow::refreshPlayerUI(void) {
 
 }
 
-void MainWindow::popUpBuyEstate(class Estate* e) {
+//void MainWindow::popUpBuyEstate(class Estate* e) {
+void MainWindow::popUpBuyEstate(Case *e) {
     this->popBuyEstate = new PopUpBuyEstate(this,e,this->board->getCurrentPlayer());
     this->popBuyEstate->show();
 }
@@ -388,7 +389,7 @@ void MainWindow::receiveBuyEstate(bool answer) {
     this->refreshPlayerUI();
 }
 
-void MainWindow::popUpPayRent(class Estate *e, class Player* buyer) {
+void MainWindow::popUpPayRent(Case *e, class Player* buyer) {
     this->popBuyRent = new PopUpPayRent(e,buyer);
     this->popBuyRent->show();
 }
@@ -400,10 +401,11 @@ void Board::refreshViewDelegate(MainWindow *w) {
     w->refreshView();
 }
 
-void Board::popUpBuyEstate(MainWindow *w, class Estate* e) {
+//void Board::popUpBuyEstate(MainWindow *w, class Estate* e) {
+void Board::popUpBuyEstate(MainWindow *w, Case *e) {
     w->popUpBuyEstate(e);
 }
 
-void Board::popUpPayRent(MainWindow *w, class Estate *e, class Player* buyer) {
+void Board::popUpPayRent(MainWindow *w, Case *e, class Player* buyer) {
     w->popUpPayRent(e,buyer);
 }

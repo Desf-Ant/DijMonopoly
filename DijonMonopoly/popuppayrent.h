@@ -8,19 +8,21 @@
 #include <QVBoxLayout>
 #include <QString>
 
-#include "estate.h"
+#include "case.h"
 #include "player.h"
 
 #include <string>
+#include <ostream>
 
 class PopUpPayRent : public QMainWindow
 {
     Q_OBJECT
 public:
-    PopUpPayRent(class Estate* e, class Player* buyer);
+    PopUpPayRent(Case* e, class Player* buyer);
 private:
     void initComponents(void);
     void initLayout(void);
+    void initSlots(void);
 private:
     QWidget* centre;
     QPushButton* okBtn;
@@ -30,6 +32,8 @@ private:
     std::string ownerName;
     std::string buyerName;
     int price;
+public slots :
+    void closeWindow(void);
 };
 
 #endif // POPUPPAYRENT_H

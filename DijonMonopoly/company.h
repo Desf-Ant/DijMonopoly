@@ -19,7 +19,7 @@ public:
 
     typeOfCase getTypeCase (void) const;
     std::string getName(void) const;
-    int getPrice(void) const;
+    double getPrice(void) const;
     Player* getOwner(void) const;
 
     void setOwner(Player* p);

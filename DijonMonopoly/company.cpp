@@ -23,7 +23,7 @@ std::string Company::getName() const {
     return this->name;
 }
 
-int Company::getPrice() const {
+double Company::getPrice() const {
     return this->price;
 }
 

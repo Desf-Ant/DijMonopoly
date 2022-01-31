@@ -51,17 +51,19 @@ public:
     void nextPlayer(void);
     void currentPlayerBuyCurrentEstate(void);
 
-    void onEstateCase(class Estate* e, MainWindow* w);
-    void onGareCase(class Gare* g, MainWindow* w);
+    //void onEstateCase(class Estate* e, MainWindow* w);
+    void onEstateCase(Case* e, MainWindow* w);
+    void onGareCase(Case* g, MainWindow* w);
     void onCornerCase(class CornerCase* c, MainWindow* w);
     void onTaxeCase(class Taxe* t, MainWindow* w);
     void onCompanyCase(class Company* c, MainWindow* w);
     void onDrawCase(class DrawCard* d, MainWindow* w);
 
     void refreshViewDelegate(MainWindow* w);
-    void popUpBuyEstate(MainWindow* w, class Estate* e);
+//    void popUpBuyEstate(MainWindow* w, class Estate* e);
+     void popUpBuyEstate(MainWindow* w, Case* e);
 
-    void popUpPayRent(MainWindow* w, class Estate* e, class Player* buyer);
+    void popUpPayRent(MainWindow* w, Case* e, class Player* buyer);
 };
 
 #endif // BOARD_H

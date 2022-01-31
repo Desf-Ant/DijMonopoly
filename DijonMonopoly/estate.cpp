@@ -20,7 +20,6 @@ Estate::Estate(int x, int y, int numero, std::string name, colorEstate color, do
     for (int i=0; i<(int)rents.size();i++) {
         this->rents.push_back(rents.at(i));
     }
-    this->checkRents();
 }
 
 void Estate::checkRents() {
@@ -45,11 +44,8 @@ double Estate::getPrice() const {
     return this->price;
 }
 
-int Estate::getRent() {
-    this->checkRents();
-    std::cout <<"size rent " <<this->rents.size() << std::endl;
-    for (int i = 0 ; i<(int)this->rents.size();i++)
-        std::cout << this->rents.at(i) << std::endl;
+int Estate::getRent() const {
+    //this->checkRents();
     return this->rents.at(this->getHouse());
 }
 

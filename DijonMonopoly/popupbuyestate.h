@@ -13,7 +13,7 @@
 #include <ostream>
 #include <string>
 
-#include "estate.h"
+#include "case.h"
 #include "player.h"
 
 class PopUpBuyEstate: public QMainWindow
@@ -21,8 +21,9 @@ class PopUpBuyEstate: public QMainWindow
     Q_OBJECT
 private:
     QWidget* parent;
-    class Estate* estate;
+    Case* estate;
     Player* p;
+    std::string pathImage;
 private:
     QWidget* centre;
     QVBoxLayout* vbox;
@@ -30,8 +31,9 @@ private:
     QPushButton* yesButton;
     QPushButton* noButton;
     QLabel* label;
+    QLabel* labelCard;
 public:
-    PopUpBuyEstate(QWidget *parent, class Estate* e, Player* p);
+    PopUpBuyEstate(QWidget *parent, Case* e, Player* p);
 private:
     void initComponent(void);
     void initLayout(void);

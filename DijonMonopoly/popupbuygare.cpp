@@ -14,7 +14,7 @@ void PopUpBuyGare::initComponent() {
     this->centre = new QWidget();
     this->yesButton = new QPushButton("Oui");
     this->noButton = new QPushButton("Non");
-    this->label = new QLabel(QString::fromStdString(this->p->getName()+" voulez-vous acheter "+this->gare->getName()+" pour "+std::to_string((int)this->estate->getPrice())+"M ?"));
+    this->label = new QLabel(QString::fromStdString(this->p->getName()+" voulez-vous acheter "+this->gare->getName()+" pour "+std::to_string((int)this->gare->getPrice())+"M ?"));
 }
 
 void PopUpBuyGare::initLayout() {

@@ -20,7 +20,7 @@ std::string Taxe::getName() const {
     return this->name;
 }
 
-int Taxe::getPrice() const {
+double Taxe::getPrice() const {
     return this->price;
 }
 

@@ -23,12 +23,12 @@ public:
     void checkRents(void);
 
     typeOfCase getTypeCase(void) const;
-    std::string getName() const;
-    colorEstate getColor() const;
-    int getRent(void);
-    Player* getOwner() const;
-    double getPrice() const;
-    int getHouse() const;
+    std::string getName(void) const;
+    colorEstate getColor(void) const;
+    int getRent(void) const;
+    Player* getOwner(void) const;
+    double getPrice(void) const;
+    int getHouse(void) const;
     std::string getPath(void) const;
 
     void setOwner(Player* newOwner);
