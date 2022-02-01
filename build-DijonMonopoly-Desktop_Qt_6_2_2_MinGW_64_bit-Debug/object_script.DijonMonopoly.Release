@@ -9,9 +9,15 @@ release/main.o
 release/mainwindow.o
 release/player.o
 release/popupaddplayer.o
+release/popupbuyestate.o
+release/popupbuygare.o
+release/popuppayrent.o
 release/popupcard.o
 release/taxe.o
 release/gare.o
 release/moc_mainwindow.o
 release/moc_popupaddplayer.o
+release/moc_popupbuyestate.o
+release/moc_popupbuygare.o
+release/moc_popuppayrent.o
 release/moc_popupcard.o

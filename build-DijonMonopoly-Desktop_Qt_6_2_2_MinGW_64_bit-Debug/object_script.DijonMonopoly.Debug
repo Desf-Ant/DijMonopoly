@@ -9,9 +9,15 @@ debug/main.o
 debug/mainwindow.o
 debug/player.o
 debug/popupaddplayer.o
+debug/popupbuyestate.o
+debug/popupbuygare.o
+debug/popuppayrent.o
 debug/popupcard.o
 debug/taxe.o
 debug/gare.o
 debug/moc_mainwindow.o
 debug/moc_popupaddplayer.o
+debug/moc_popupbuyestate.o
+debug/moc_popupbuygare.o
+debug/moc_popuppayrent.o
 debug/moc_popupcard.o
