@@ -234,7 +234,11 @@ void Board::onCompanyCase(class Company *c, MainWindow* w) {
     }
 }
 
-void Board::onDrawCase(class DrawCard *d, MainWindow* w) {
-    // drawing a card
+void Board::onDrawCase(class DrawCard* d, MainWindow* w) {
+    if (d->getTypeDrawCard() == 0 ){
+       d->DrawComCard();
+    }
+    else {
+       d->DrawChanceCard();
+    }
 }
-

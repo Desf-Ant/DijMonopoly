@@ -1,12 +1,14 @@
 #include "popupcard.h"
 
-PopUpCard::PopUpCard(QWidget *parent): QMainWindow(parent)
+PopUpCard::PopUpCard(QWidget *parent, typeDrawCard type): QMainWindow(parent)
 {
     this->setWindowTitle("Cartes de jeu");
     this->setGeometry(650,300,519,276);
     this->setFixedSize(this->size());
     this->initComponent();
     this->initLayout();
+    this->initSlots();
+
 }
 
 void PopUpCard::initComponent() {
@@ -19,10 +21,26 @@ void PopUpCard::initComponent() {
 void PopUpCard::initLayout() {
     this->setCentralWidget(this->centre);
     this->formLayout = new QFormLayout();
-    /* this->image = new QImage();
-    image->load("file:///Z:/Documents/Monopoly/DijMonopoly/Cases/Imagepopupcartes.png");
-    */
-// image->load("Z:\Documents\Monopoly\DijMonopoly\Cases\Imagepopupcartes.png");
-    this->label = new QLabel("YO SLP DE DESF");
+    this->centre->setLayout(this->formLayout);
+    this->formLayout->addRow(this->label);
+    DrawCard* dchance = new DrawCard();
+    DrawCard* dcom = new DrawCard();
+    label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+    // std::cout << dchance->DrawChanceCard() << std::endl;
+    if (typeDrawCard::ComCard) {
+        label->setText (QString::fromStdString(dchance->DrawComCard()));
+    }
+    if (typeDrawCard::ChanceCard){
+        label->setText (QString::fromStdString(dchance->DrawChanceCard()));
+    }
+    label->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
     this->formLayout->addWidget(this->button);
+}
+
+void PopUpCard::initSlots() {
+    QWidget::connect(this->button, SIGNAL(clicked()), this, SLOT(quit()));
+}
+
+void PopUpCard::quit(){
+    this->close();
 }

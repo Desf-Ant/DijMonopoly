@@ -38,6 +38,10 @@ private :
     QComboBox* liste_deroulante2;
     QComboBox* liste_deroulante3;
     QComboBox* liste_deroulante4;
+    QVariant* val1;
+    QVariant* val2;
+    QVariant* val3;
+    QVariant* val4;
     QPushButton* button;
 public:
     PopUpAddPlayer(QWidget *parent);
@@ -47,8 +51,10 @@ private :
     void initSlots(void);
 signals :
     void newPlayerSignal(std::vector<std::string>);
+    void newPlayerColor(std::vector<std::string>);
 public slots:
     void preparePlayer(void);
+    void playerColor(void);
 };
 
 #endif // POPUPADDPLAYER_H

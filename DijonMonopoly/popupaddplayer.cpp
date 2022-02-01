@@ -25,7 +25,7 @@ void PopUpAddPlayer::initComponent() {
     this->piece2 = new QLabel("Pièce 2");
     this->piece3 = new QLabel("Pièce 3");
     this->piece4 = new QLabel("Pièce 4");
-    this->liste_deroulante1 = new QComboBox();
+    this->liste_deroulante1 = new QComboBox(this);
     this->liste_deroulante1->addItem("Rouge");
     this->liste_deroulante1->addItem("Bleu");
     this->liste_deroulante1->addItem("Vert");
@@ -37,7 +37,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante1->addItem("Rose");
     this->liste_deroulante1->addItem("Gris");
     this->liste_deroulante1->addItem("Orange");
-    this->liste_deroulante2 = new QComboBox();
+    QVariant val1 = this->liste_deroulante1->itemData(this->liste_deroulante1->currentIndex());
+    this->liste_deroulante2 = new QComboBox(this);
     this->liste_deroulante2->addItem("Rouge");
     this->liste_deroulante2->addItem("Bleu");
     this->liste_deroulante2->addItem("Vert");
@@ -49,7 +50,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante2->addItem("Rose");
     this->liste_deroulante2->addItem("Gris");
     this->liste_deroulante2->addItem("Orange");
-    this->liste_deroulante3 = new QComboBox();
+    QVariant val2 = this->liste_deroulante2->itemData(this->liste_deroulante2->currentIndex());
+    this->liste_deroulante3 = new QComboBox(this);
     this->liste_deroulante3->addItem("Rouge");
     this->liste_deroulante3->addItem("Bleu");
     this->liste_deroulante3->addItem("Vert");
@@ -61,7 +63,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante3->addItem("Rose");
     this->liste_deroulante3->addItem("Gris");
     this->liste_deroulante3->addItem("Orange");
-    this->liste_deroulante4 = new QComboBox();
+    QVariant val3 = this->liste_deroulante3->itemData(this->liste_deroulante3->currentIndex());
+    this->liste_deroulante4 = new QComboBox(this);
     this->liste_deroulante4->addItem("Rouge");
     this->liste_deroulante4->addItem("Bleu");
     this->liste_deroulante4->addItem("Vert");
@@ -73,6 +76,7 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante4->addItem("Rose");
     this->liste_deroulante4->addItem("Gris");
     this->liste_deroulante4->addItem("Orange");
+    QVariant val4 = this->liste_deroulante4->itemData(this->liste_deroulante4->currentIndex());
     this->button = new QPushButton("Nouvelle partie");
 }
 
@@ -102,7 +106,9 @@ void PopUpAddPlayer::initLayout() {
 
 void PopUpAddPlayer::initSlots() {
     QWidget::connect(this->button, SIGNAL(clicked()), this, SLOT(preparePlayer()));
+    //QWidget::connect(this->button, SIGNAL(clicked()), this, SLOT(playerColor()));
     QWidget::connect(this, SIGNAL(newPlayerSignal(std::vector<std::string>)), this->parent, SLOT(initPlayerUI(std::vector<std::string>)));
+    // Manque la dernière la fonction QWidget::connect(this, SIGNAL(newPlayerColor(std::vector<std::string>)), this->parent, SLOT((std::vector<std::string>)));
 }
 
 void PopUpAddPlayer::preparePlayer() {
@@ -112,5 +118,15 @@ void PopUpAddPlayer::preparePlayer() {
     names.push_back(this->player3->text().toStdString());
     names.push_back(this->player4->text().toStdString());
     emit newPlayerSignal(names);
+    this->close();
+}
+
+void PopUpAddPlayer::playerColor() {
+    std::vector<std::string> color = std::vector<std::string>();
+    color.push_back(val1->toString().toStdString());
+    color.push_back(val2->toString().toStdString());
+    color.push_back(val3->toString().toStdString());
+    color.push_back(val4->toString().toStdString());
+    emit newPlayerColor(color);
     this->close();
 }

@@ -16,10 +16,12 @@ public:
     DrawCard();
     DrawCard(int x, int y, int numero, typeDrawCard typeDraw);
 
+    typeDrawCard getTypeDrawCard(void) const;
     void Draw(typeDrawCard typeDraw);
     std::string RecupFichiercom();
     std::string RecupFichierchance();
     std::string DrawChanceCard ();
+    std::string DrawComCard();
 };
 
 #endif // DRAWCARD_H
