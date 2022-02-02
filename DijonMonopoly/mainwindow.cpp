@@ -73,7 +73,7 @@ void MainWindow::initCases() {
     if (current >= QOperatingSystemVersion::MacOSSierra) {
         std::cout << "system Mac" << current.currentType() << std::endl;
     }
-    if (current >= QOperatingSystemVersion::Windows7) {
+    if (current >= QOperatingSystemVersion::Windows10) {
         std::cout << "system Win" << std::endl;
     }
     this->cases.push_back(this->scene->addPixmap(QPixmap("../Cases/depart.png")));
@@ -221,16 +221,38 @@ void MainWindow::initPlayer() {
 
 void MainWindow::initPlayerUI(std::vector<std::string> names, std::vector<std::string> color) {
     // Create all the ui for the player
-    std::cout << color.size() << std::endl;
-    for (int i=0; i<(int) color.size(); i++) {
-        std::cout << color.at(i) <<std::endl;
-    }
+    // std::cout << color.size() << std::endl;
     for (int i=0; i< (int) names.size() ; i++) {
+        QColor col = QColor();
+        if (color.at(i) == "Rouge") {
+            col = QColor(Qt::red);
+        }
+        else if (color.at(i) == "Bleu"){
+            col = QColor(Qt::blue);
+        }
+        else if (color.at(i) == "Noir"){
+            col = QColor(Qt::black);
+        }
+        else if (color.at(i) == "Magenta"){
+            col = QColor(Qt::magenta);
+        }
+        else if (color.at(i) == "Gris"){
+            col = QColor(Qt::gray);
+        }
+        else if (color.at(i) == "Jaune"){
+            col = QColor(Qt::yellow);
+        }
+        else if (color.at(i) == "Vert"){
+            col = QColor(Qt::green);
+        }
+        else if (color.at(i) == "Cyan"){
+            col = QColor(Qt::cyan);
+        }
         QGraphicsTextItem* text = new QGraphicsTextItem( QString::fromStdString( names[i] ));
         QGraphicsTextItem* money = new QGraphicsTextItem( "2000 M" );
         QGraphicsTextItem* nb = new QGraphicsTextItem( "Nombre Propriété : 0" );
         QGraphicsTextItem* p = new QGraphicsTextItem( "'Libéré de prison' : 0" );
-        QGraphicsRectItem* player = this->scene->addRect(0,0,30,30, QPen(Qt::red), QBrush(Qt::red));
+        QGraphicsRectItem* player = this->scene->addRect(0,0,30,30, QPen(col), QBrush(col));
         this->board->addPlayer(new Player(names[i], "chien",2000));
         this->physicalPlayers.push_back(player);
         this->playersNames.push_back(text);
