@@ -16,6 +16,10 @@ Gare::Gare(int x, int y, int numero, std::string name, double price ,std::string
     this->house = 0;
 }
 
+Gare::~Gare() {
+    delete this->owner;
+}
+
 typeOfCase Gare::getTypeCase() const{
     return this->typeCase;
 }

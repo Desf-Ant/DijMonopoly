@@ -4,6 +4,10 @@ Case::Case()
 {
 
 }
+Case::~Case() {
+    delete this->playerOnIt;
+    delete this->owner;
+}
 
 typeOfCase Case::getTypeCase() const{
     return this->typeCase;

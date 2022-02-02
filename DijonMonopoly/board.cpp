@@ -9,6 +9,15 @@ Board::Board()
     this->createBoard();
 }
 
+Board::~Board() {
+//    for (int i = 0;i <(int)this->cases.size(); i++) {
+//        delete this->cases.at(i);
+//    }
+//    for (int i = 0;i <(int)this->players.size(); i++) {
+//        delete this->players.at(i);
+//    }
+}
+
 void Board::createBoard() {
     auto current = QOperatingSystemVersion::current();
     std::string beginPath = "";
@@ -227,7 +236,7 @@ void Board::onGareCase(Case *g, MainWindow* w) {
 
 void Board::onCornerCase(class CornerCase *c, MainWindow* w) {
     // make the right action related by the corner case
-    //c->actionRelated(this->getCurrentPlayer());
+    c->actionRelated(this->getCurrentPlayer());
 }
 
 void Board::onTaxeCase(class Taxe *t, MainWindow* w) {

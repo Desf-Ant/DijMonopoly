@@ -15,6 +15,7 @@ private:
     double price;
 public:
     Company();
+    ~Company();
     Company(int x, int y, int numero, std::string name, double price, std::string path);
 
     typeOfCase getTypeCase (void) const;

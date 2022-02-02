@@ -24,13 +24,9 @@ private:
     std::vector<Case*> cases;
     std::vector<int> dices;
     double playerIndex;
-    //void (*refreshView) ();
-    //void (MainWindow::*refreshView)();
-    //void* refreshView;
 public:
     Board();
-    //Board(void (*refreshView) ());
-    //Board(void (MainWindow::*refreshView)());
+    ~Board();
     void createBoard(void);
     void gameTurn(MainWindow* w);
     void check(void);

@@ -17,6 +17,10 @@ MainWindow::~MainWindow()
 {
     delete(this->scene);
     delete(this->view);
+    delete this->board;
+//    delete (this->physicPlateau);
+//    delete (this->throwDiceBtn);
+//    delete (this->cardInfo);
 }
 
 void MainWindow::startMainWindow() {
