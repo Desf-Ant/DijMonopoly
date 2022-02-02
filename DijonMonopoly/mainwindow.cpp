@@ -69,7 +69,7 @@ void MainWindow::initSlots() {
 
 
 void MainWindow::initCases() {
-    this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/depart.png")));
+    this->cases.push_back(this->scene->addPixmap(QPixmap("../Cases/depart.png")));
     this->cases[0]->setPos(997,717);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/vergy.png")));
     this->cases[1]->setPos(931,717);

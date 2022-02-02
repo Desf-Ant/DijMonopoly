@@ -11,7 +11,7 @@ Board::Board()
 
 void Board::createBoard() {
     this->cases.push_back(new class CornerCase(1057, 777, 0, typeCornerCase::Depart));
-    this->cases.push_back(new class Estate(964, 777, 1, "Rue Alix de Vergy", colorEstate::Brown, 60, {2,10,30,90,160,250}, "../../../../CardEstate/vergy.png"));
+    this->cases.push_back(new class Estate(964, 777, 1, "Rue Alix de Vergy", colorEstate::Brown, 60, {2,10,30,90,160,250}, "../CardEstate/vergy.png"));
     this->cases.push_back(new class DrawCard(898,777,2,typeDrawCard::ComCard));
     this->cases.push_back(new class Estate(832, 777 , 3, "Place des Savoirs", colorEstate::Brown, 60,{4,20,60,180,320,450},"../../../../CardEstate/savoirs.png"));
     this->cases.push_back(new class Taxe(766, 777, 4, "Impôt sur le revenu", 200));
@@ -238,7 +238,11 @@ void Board::onCompanyCase(class Company *c, MainWindow* w) {
     }
 }
 
-void Board::onDrawCase(class DrawCard *d, MainWindow* w) {
-    // drawing a card
+void Board::onDrawCase(class DrawCard* d, MainWindow* w) {
+    if (d->getTypeDrawCard() == 0 ){
+       d->DrawComCard();
+    }
+    else {
+       d->DrawChanceCard();
+    }
 }
-
