@@ -1,5 +1,5 @@
-#ifndef POPUPBUYESTATE_H
-#define POPUPBUYESTATE_H
+#ifndef POPUPBUY_H
+#define POPUPBUY_H
 
 #include <QMainWindow>
 #include <QWidget>
@@ -45,4 +45,4 @@ public slots:
     void trueReturn(void);
 };
 
-#endif // POPUPBUYESTATE_H
+#endif // POPUPBUY_H

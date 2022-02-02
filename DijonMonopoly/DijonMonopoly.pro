@@ -20,8 +20,7 @@ SOURCES += \
     mainwindow.cpp \
     player.cpp \
     popupaddplayer.cpp \
-    popupbuyestate.cpp \
-    popupbuygare.cpp \
+    popupbuy.cpp \
     popuppayrent.cpp \
     popupcard.cpp \
     taxe.cpp \
@@ -39,8 +38,7 @@ HEADERS += \
     mainwindow.h \
     player.h \
     popupaddplayer.h \
-    popupbuyestate.h \
-    popupbuygare.h \
+    popupbuy.h \
     popuppayrent.h \
     popupcard.h \
     taxe.h \

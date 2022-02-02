@@ -61,9 +61,9 @@ public:
 
     void refreshViewDelegate(MainWindow* w);
 //    void popUpBuyEstate(MainWindow* w, class Estate* e);
-     void popUpBuyEstate(MainWindow* w, Case* e);
+     void popUpBuy(MainWindow* w, Case* e);
 
-    void popUpPayRent(MainWindow* w, Case* e, class Player* buyer);
+    void popUpPayRent(MainWindow* w, Case* e, class Player* buyer, int sumDice=0);
 };
 
 #endif // BOARD_H

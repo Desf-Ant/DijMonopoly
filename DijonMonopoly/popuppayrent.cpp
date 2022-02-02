@@ -1,23 +1,28 @@
 #include "popuppayrent.h"
 
-PopUpPayRent::PopUpPayRent(Case* e, class Player* buyer)
+PopUpPayRent::PopUpPayRent(Case* e, class Player* buyer, int sumDice)
 {
     this->ownerName = e->getOwner()->getName();
     this->buyerName = buyer->getName();
     this->price = e->getRent();
+    this->caseName = e->getName();
     this->initComponents();
     this->initLayout();
     this->initSlots();
+    this->sumDice = sumDice;
 }
 
 void PopUpPayRent::initComponents() {
     this->centre = new QWidget();
-    this->label = new QLabel(QString::fromStdString(this->buyerName + " est sur une propriété de "+ this->ownerName + ", il doit payer "+ std::to_string(this->price)));
+    if (this->sumDice > 0) {
+        std::cout << this->price*this->sumDice << std::endl;
+        this->label = new QLabel(QString::fromStdString(this->buyerName + " est sur " + this->caseName + " appartenant à "+ this->ownerName + ", il doit payer "+ std::to_string(this->price*this->sumDice)));
+    }else
+        this->label = new QLabel(QString::fromStdString(this->buyerName + " est sur " + this->caseName + " appartenant à "+ this->ownerName + ", il doit payer "+ std::to_string(this->price)));
     this->okBtn = new QPushButton("Payer");
 }
 
 void PopUpPayRent::initLayout() {
-    std::cout << "initLayout" << std::endl;
     this->setCentralWidget(this->centre);
     this->vbox = new QVBoxLayout();
     this->centre->setLayout(this->vbox);

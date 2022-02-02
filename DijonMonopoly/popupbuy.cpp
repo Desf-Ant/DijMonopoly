@@ -1,4 +1,4 @@
-#include "popupbuyestate.h"
+#include "popupbuy.h"
 
 //PopUpBuyEstate::PopUpBuyEstate(QWidget *parent, class Estate* e, Player* p) :QMainWindow(parent)
 PopUpBuyEstate::PopUpBuyEstate(QWidget *parent, Case* e, Player* p) :QMainWindow(parent)

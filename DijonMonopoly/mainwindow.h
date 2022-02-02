@@ -15,7 +15,7 @@
 #include <QColor>
 
 #include "popupaddplayer.h"
-#include "popupbuyestate.h"
+#include "popupbuy.h"
 #include "popuppayrent.h"
 #include "board.h"
 #include "player.h"
@@ -41,6 +41,7 @@ private:
     QGraphicsRectItem* physicPlateau;
     QGraphicsPixmapItem* throwDiceBtn;
     QGraphicsPixmapItem* cardInfo;
+    QGraphicsTextItem* cardInfoOwner;
     QGraphicsTextItem* scoreDice;
     std::vector <QGraphicsPixmapItem*> cases;
     std::vector <QGraphicsRectItem*> physicalPlayers;
@@ -57,9 +58,8 @@ public:
     ~MainWindow();
     void startMainWindow(void);
     void refreshView();
-    //void popUpBuyEstate(class Estate* e);
     void popUpBuyEstate(Case* e);
-    void popUpPayRent(Case* e, class Player* buyer);
+    void popUpPayRent(Case* e, class Player* buyer, int sumDice=0);
 private:
     //Ui::MainWindow *ui;
     void initComponents(void);
@@ -68,6 +68,7 @@ private:
     void initCases(void);
     void initPlayer(void);
     void gameTurn(void);
+    void setCardInfo(int num);
 
     void refreshDice(void);
     void refreshPlayerUI(void);

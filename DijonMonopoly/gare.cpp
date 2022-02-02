@@ -12,6 +12,8 @@ Gare::Gare(int x, int y, int numero, std::string name, double price ,std::string
     this->price = price;
     this->owner = nullptr;
     this->path = path;
+    this->rents = {25,50,100,200};
+    this->house = 0;
 }
 
 typeOfCase Gare::getTypeCase() const{

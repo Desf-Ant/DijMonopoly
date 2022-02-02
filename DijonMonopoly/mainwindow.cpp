@@ -10,8 +10,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
     this->initLayout();
     this->initSlots();
     this->board = new Board();
-    //this->board = new Board(&MainWindow::refreshView);
-    //this->board = new Board(&(refreshView));
     this->t = std::time(0);
 }
 
@@ -23,8 +21,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::startMainWindow() {
     this->initPlayer();
-//    PopUpCard* p = new PopUpCard(nullptr);
-//    p->show();
 }
 
 void MainWindow::initComponents() {
@@ -44,7 +40,7 @@ void MainWindow::initComponents() {
 
     // Throw dice button
     this->throwDiceBtn = this->scene->addPixmap(QPixmap("../../../../Autres/dice.png"));
-    this->throwDiceBtn->setScale(0.2);
+    this->throwDiceBtn->setScale(0.3);
     this->throwDiceBtn->setFlag(QGraphicsItem::ItemIsSelectable, true);
     // text which indicates score dice
     this->scoreDice = this->scene->addText("");
@@ -53,14 +49,18 @@ void MainWindow::initComponents() {
     this->cardInfo = new QGraphicsPixmapItem();
     this->scene->addItem(this->cardInfo);
     this->cardInfo->setPos(618,222);
+    // text which give detail on a case
+    this->cardInfoOwner = new QGraphicsTextItem("");
+    this->scene->addItem(this->cardInfoOwner);
 }
 
 void MainWindow::initLayout() {
     this->setCentralWidget(this->view);
     this->initCases();
 
-    this->throwDiceBtn->setPos(700-(this->throwDiceBtn->boundingRect().size().rwidth()*0.2/2),610);
+    this->throwDiceBtn->setPos(700-(this->throwDiceBtn->boundingRect().size().rwidth()*0.3/2),610);
     this->scoreDice->setPos(700-(this->scoreDice->boundingRect().size().rwidth()/2), 580);
+    this->cardInfoOwner->setPos(700-(this->cardInfoOwner->boundingRect().size().rwidth()/2),200);
 }
 
 void MainWindow::initSlots() {
@@ -83,6 +83,7 @@ void MainWindow::initCases() {
     this->cases[4]->setPos(733,717);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/arret1.png")));
     this->cases[5]->setPos(667,717);
+    this->cases[5]->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/dubois.png")));
     this->cases[6]->setPos(601,717);
     this->cases[6]->setFlag(QGraphicsItem::ItemIsSelectable, true);
@@ -103,6 +104,7 @@ void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/edf.png")));
     this->cases[12]->setPos(403,585);
     this->cases[12]->setRotation(90);
+    this->cases[12]->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/gabriel.png")));
     this->cases[13]->setPos(403,519);
     this->cases[13]->setRotation(90);
@@ -114,6 +116,7 @@ void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/arret2.png")));
     this->cases[15]->setPos(403,387);
     this->cases[15]->setRotation(90);
+    this->cases[15]->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/berbisey.png")));
     this->cases[16]->setPos(403,321);
     this->cases[16]->setRotation(90);
@@ -149,6 +152,7 @@ void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/arret3.png")));
     this->cases[25]->setPos(733,123);
     this->cases[25]->setRotation(180);
+    this->cases[25]->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/thiers.png")));
     this->cases[26]->setPos(799,123);
     this->cases[26]->setRotation(180);
@@ -160,6 +164,7 @@ void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/suez.png")));
     this->cases[28]->setPos(931,123);
     this->cases[28]->setRotation(180);
+    this->cases[28]->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/octobre.png")));
     this->cases[29]->setPos(997,123);
     this->cases[29]->setRotation(180);
@@ -184,6 +189,7 @@ void MainWindow::initCases() {
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/arret4.png")));
     this->cases[35]->setPos(997,453);
     this->cases[35]->setRotation(-90);
+    this->cases[35]->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/chance.png")));
     this->cases[36]->setPos(997,519);
     this->cases[36]->setRotation(-90);
@@ -260,6 +266,7 @@ void MainWindow::whichCaseIsSelected() {
     // Check which case is selected
     this->scoreDice->setPos(700-(this->scoreDice->boundingRect().size().rwidth()/2), 580);
     if (this->scene->selectedItems().size() > 0) {
+        this->cardInfoOwner->setPlainText("");
         if (this->scene->selectedItems().at(0) == this->throwDiceBtn && std::time(0) - this->t > 1) { // avoid boucing
             this->board->nextPlayer();
             this->t = std::time(0);
@@ -268,74 +275,73 @@ void MainWindow::whichCaseIsSelected() {
         } else if (this->scene->selectedItems().at(0) == this->physicPlateau){
             this->cardInfo->setPixmap(QPixmap(""));
         }else if (this->scene->selectedItems().at(0) == this->cases.at(1)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(1));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(1);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(3)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(3));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(3);
+        }else if (this->scene->selectedItems().at(0) == this->cases.at(5)) {
+            this->setCardInfo(5);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(6)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(6));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(6);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(8)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(8));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(8);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(9)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(9));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(9);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(11)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(11));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(11);
+        }else if (this->scene->selectedItems().at(0) == this->cases.at(12)) {
+            this->setCardInfo(12);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(13)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(13));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(13);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(14)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(14));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(14);
+        }else if (this->scene->selectedItems().at(0) == this->cases.at(15)) {
+            this->setCardInfo(15);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(16)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(16));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(16);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(17)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(17));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(17);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(19)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(19));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(19);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(21)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(21));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(21);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(23)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(23));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(23);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(24)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(24));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(24);
+        }else if (this->scene->selectedItems().at(0) == this->cases.at(25)) {
+            this->setCardInfo(25);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(26)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(26));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(26);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(27)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(27));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(27);
+        }else if (this->scene->selectedItems().at(0) == this->cases.at(28)) {
+            this->setCardInfo(28);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(29)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(29));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(29);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(31)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(31));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(31);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(32)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(32));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(32);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(34)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(34));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(34);
+        }else if (this->scene->selectedItems().at(0) == this->cases.at(35)) {
+            this->setCardInfo(35);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(37)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(37));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(37);
         }else if (this->scene->selectedItems().at(0) == this->cases.at(39)) {
-            class Estate* e = static_cast<class Estate*>(this->board->getCaseAt(39));
-            this->cardInfo->setPixmap(QPixmap(QString::fromStdString(e->getPath())));
+            this->setCardInfo(39);
         }
     }
     this->scene->clearSelection();
+}
+
+void MainWindow::setCardInfo(int num) {
+    // What display when click on a case
+    if (this->board->getCaseAt(num)->getOwner() != nullptr ) {
+        this->cardInfoOwner->setPlainText(QString::fromStdString("Cette carte appartient à "+this->board->getCaseAt(num)->getOwner()->getName()));
+        this->cardInfoOwner->setPos(700-(this->cardInfoOwner->boundingRect().size().rwidth()/2),200);
+    }
+    this->cardInfo->setPixmap(QPixmap(QString::fromStdString(this->board->getCaseAt(num)->getPath())));
 }
 
 void MainWindow::refreshView() {
@@ -353,10 +359,6 @@ void MainWindow::refreshDice() {
 
 void MainWindow::refreshPlayerPhysical() {
     // Move players
-//    for (int i=0; i<(int)this->physicalPlayers.size();i++) {
-//        this->physicalPlayers.at(i)->setPos(this->board->getCaseAt(this->board->getPlayers().at(i)->getLocalisation())->getCoordCenter());
-//        std::cout<< this->board->getCaseAt(this->board->getPlayers().at(i)->getLocalisation())->getCoordCenter().x() << " " << this->board->getCaseAt(this->board->getPlayers().at(i)->getLocalisation())->getCoordCenter().y()  << std::endl;
-//    }
     this->physicalPlayers.at(this->board->getPlayerIndex())->setPos(this->board->getCaseOfCurrentPlayer()->getCoordCenter());
     std::cout << this->board->getPlayerIndex() << " change his position " << this->board->getCaseOfCurrentPlayer()->getCoordCenter().x() << " " << this->board->getCaseOfCurrentPlayer()->getCoordCenter().y() << std::endl;
 }
@@ -389,8 +391,8 @@ void MainWindow::receiveBuyEstate(bool answer) {
     this->refreshPlayerUI();
 }
 
-void MainWindow::popUpPayRent(Case *e, class Player* buyer) {
-    this->popBuyRent = new PopUpPayRent(e,buyer);
+void MainWindow::popUpPayRent(Case *e, class Player* buyer, int sumDice) {
+    this->popBuyRent = new PopUpPayRent(e,buyer, sumDice);
     this->popBuyRent->show();
 }
 
@@ -402,10 +404,10 @@ void Board::refreshViewDelegate(MainWindow *w) {
 }
 
 //void Board::popUpBuyEstate(MainWindow *w, class Estate* e) {
-void Board::popUpBuyEstate(MainWindow *w, Case *e) {
+void Board::popUpBuy(MainWindow *w, Case *e) {
     w->popUpBuyEstate(e);
 }
 
-void Board::popUpPayRent(MainWindow *w, Case *e, class Player* buyer) {
+void Board::popUpPayRent(MainWindow *w, Case *e, class Player* buyer, int sumDice) {
     w->popUpPayRent(e,buyer);
 }

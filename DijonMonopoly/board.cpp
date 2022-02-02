@@ -15,17 +15,17 @@ void Board::createBoard() {
     this->cases.push_back(new class DrawCard(898,777,2,typeDrawCard::ComCard));
     this->cases.push_back(new class Estate(832, 777 , 3, "Place des Savoirs", colorEstate::Brown, 60,{4,20,60,180,320,450},"../../../../CardEstate/savoirs.png"));
     this->cases.push_back(new class Taxe(766, 777, 4, "Impôt sur le revenu", 200));
-    this->cases.push_back(new class Gare(700, 777, 5, "Arrêt Grésille", 200, ""));
+    this->cases.push_back(new class Gare(700, 777, 5, "Arrêt Grésille", 200, "../../../../CardEstate/arretGresille.png"));
     this->cases.push_back(new class Estate(634,777, 6, "Rue Dubois", colorEstate::LightBlue, 100,{6,30,90,270,400,550}, "../../../../CardEstate/dubois.png"));
     this->cases.push_back(new class DrawCard(568,777,7,typeDrawCard::ChanceCard));
     this->cases.push_back(new class Estate(502, 777, 8, "Rue des Marmuzots", colorEstate::LightBlue, 100, {6,30,90,270,400,550},"../../../../CardEstate/marmuzots.png"));
     this->cases.push_back(new class Estate(436, 777, 9, "Rue Vannerie", colorEstate::LightBlue, 120, {8,40,100,300,450,600},"../../../../CardEstate/vannerie.png"));
     this->cases.push_back(new class CornerCase(343, 777, 10, typeCornerCase::Prison));
     this->cases.push_back(new class Estate(343, 684,11, "Rue Sully", colorEstate::Purple, 140,{10,50,150,450,625,750}, "../../../../CardEstate/sully.png") );
-    this->cases.push_back(new class Company(343,618,12,"EDF",150));
+    this->cases.push_back(new class Company(343,618,12,"EDF",150, "../../../../CardEstate/EDF.png"));
     this->cases.push_back(new class Estate(343,552,13,"Boulevard Gabriel", colorEstate::Purple, 140,{10,50,150,450,625,750},"../../../../CardEstate/gabriel.png") );
     this->cases.push_back(new class Estate(343,486,14,"Rue d'Auxonne", colorEstate::Purple, 160,{12,60,180,500,700,900}, "../../../../CardEstate/auxonne.png") );
-    this->cases.push_back(new class Gare(343,420,15,"Arrêt Monge",200, "") );
+    this->cases.push_back(new class Gare(343,420,15,"Arrêt Monge",200, "../../../../CardEstate/arretMonge.png") );
     this->cases.push_back(new class Estate(343,354,16,"Rue Berbisey", colorEstate::Orange, 180,{14,70,200,550,750,950} ,"../../../../CardEstate/berbisey.png") );
     this->cases.push_back(new class Estate(343,288,17,"Rue Charrue",colorEstate::Orange, 180, {14,70,200,550,750,950} ,"../../../../CardEstate/charrue.png") );
     this->cases.push_back(new class DrawCard(343,222,18,typeDrawCard::ComCard) );
@@ -35,17 +35,17 @@ void Board::createBoard() {
     this->cases.push_back(new class DrawCard(502,63,22,typeDrawCard::ChanceCard) );
     this->cases.push_back(new class Estate(568,63,23,"Rue Danton", colorEstate::Red, 220,{18,90,250,700,875,1050}, "../../../../CardEstate/danton.png") );
     this->cases.push_back(new class Estate(634,63,24,"Rue de Tivoli",colorEstate::Red, 240, {18,90,250,700,875,1050}, "../../../../CardEstate/tivoli.png") );
-    this->cases.push_back(new class Gare(700,63,25,"Arrêt République",200,"") );
+    this->cases.push_back(new class Gare(700,63,25,"Arrêt République",200,"../../../../CardEstate/arretRepublique.png") );
     this->cases.push_back(new class Estate(766,63,26,"Boulevard Thiers",colorEstate::Yellow, 260, {22,110,330,800,975,1150}, "../../../../CardEstate/thiers.png") );
     this->cases.push_back(new class Estate(832,63,27,"Boulevard Carnot", colorEstate::Yellow, 260,{22,110,330,800,975,1150}, "../../../../CardEstate/carnot.png") );
-    this->cases.push_back(new class Company(898,63,28,"SUEZ",150) );
+    this->cases.push_back(new class Company(898,63,28,"SUEZ",150, "../../../../CardEstate/SUEZ.png") );
     this->cases.push_back(new class Estate(964,63,29,"Place du 30 Octobre", colorEstate::Yellow,280,{24,120,360,830,1025,1200}, "../../../../CardEstate/octobre.png") );
     this->cases.push_back(new class CornerCase(1057,63,30,typeCornerCase::Police) );
     this->cases.push_back(new class Estate(1057,156,31,"Rue de la préfecture", colorEstate::Green, 300,{26,130,390,900,1100,1275}, "../../../../CardEstate/prefecture.png") );
     this->cases.push_back(new class Estate(1057,222,32,"Rue des Godrans",colorEstate::Green, 300,{26,130,390,900,1100,1275}, "../../../../CardEstate/godrans.png") );
     this->cases.push_back(new class DrawCard(1057,288,33,typeDrawCard::ComCard) );
     this->cases.push_back(new class Estate(1057,354,34,"Avenue Victor Hugo",colorEstate::Green,320,{28,150,450,1000,1200,1400}, "../../../../CardEstate/hugo.png") );
-    this->cases.push_back(new class Gare(1057,420,35,"Arrêt Darcy",200,"") );
+    this->cases.push_back(new class Gare(1057,420,35,"Arrêt Darcy",200,"../../../../CardEstate/arretDarcy.png") );
     this->cases.push_back(new class DrawCard(1057,486,36,typeDrawCard::ChanceCard) );
     this->cases.push_back(new class Estate(1057,552,37,"Boulevard de la Trémouille",colorEstate::DarkBlue, 350,{35,175,500,1100,1300,1500}, "../../../../CardEstate/tremouille.png") );
     this->cases.push_back(new class Taxe(1057,618,38,"Galerie de La Fayette",100) );
@@ -166,7 +166,6 @@ void Board::gameTurn(MainWindow* w) {
             break;
         }
         case typeOfCase::Gare : {
-            //class Gare* g = static_cast<class Gare*>(this->getCaseOfCurrentPlayer());
             std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a company case : " << this->getCaseOfCurrentPlayer()->getName() << std::endl;
             this->onGareCase(this->getCaseOfCurrentPlayer(),w);
             break;
@@ -186,14 +185,14 @@ void Board::gameTurn(MainWindow* w) {
 void Board::onEstateCase(Case *e, MainWindow *w) {
     if (e->getOwner() == nullptr) {
         // estate hasn't got a owner. Pop a buying pop-up
-        this->popUpBuyEstate(w,e);
+        this->popUpBuy(w,e);
     } else {
         if (this->getCurrentPlayer() == e->getOwner()) {
             // the player and the owner is the same
             // check if the player has got all estate with same color.
         } else {
             // the current player needs to pay the owner
-            std::cout << this->getCurrentPlayer()->getName() << " is on the estate of " << e->getOwner()->getName() << " and musts pay " << e->getRent() << std::endl;
+            std::cout << this->getCurrentPlayer()->getName() << " is on the estate of " << e->getOwner()->getName() << " and musts pay " << e->getRent() << "M" << std::endl;
             e->payRent(this->getCurrentPlayer());
             this->popUpPayRent(w,e,this->getCurrentPlayer());
         }
@@ -203,13 +202,15 @@ void Board::onEstateCase(Case *e, MainWindow *w) {
 void Board::onGareCase(Case *g, MainWindow* w) {
     if (g->getOwner() == nullptr) {
         // gare hasn't got a owner. Pop a buying pop-up
-        this->popUpBuyEstate(w,g);
+        this->popUpBuy(w,g);
     } else {
         if (this->getCurrentPlayer() == g->getOwner()) {
             // the player and the owner is the same
         } else {
             // the current player needs to pay the owner
+            std::cout << this->getCurrentPlayer()->getName() << " is on a gare of " << g->getOwner()->getName() << " and musts pay " << g->getRent()<< "M" << std::endl;
             g->payRent(this->getCurrentPlayer());
+            this->popUpPayRent(w,g,this->getCurrentPlayer());
         }
     }
 }
@@ -226,10 +227,13 @@ void Board::onTaxeCase(class Taxe *t, MainWindow* w) {
 void Board::onCompanyCase(class Company *c, MainWindow* w) {
     if (c->getOwner() == nullptr) {
         // Company hasn't got a owner. Pop a buying pop-up.
+        this->popUpBuy(w,c);
     } else {
         if (this->getCurrentPlayer() != c->getOwner()) {
             // the player and the owner isn't the same
+            std::cout << this->getCurrentPlayer()->getName() << " is on a gare of " << c->getOwner()->getName() << " and musts pay " << c->getRent(this->getSumDice())<< "M" << std::endl;
             c->payRent(this->getCurrentPlayer());
+            this->popUpPayRent(w,c,this->getCurrentPlayer(), this->getSumDice());
         }
     }
 }

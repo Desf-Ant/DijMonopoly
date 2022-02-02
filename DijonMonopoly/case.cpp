@@ -45,10 +45,22 @@ void Case::setHouse(int numberHouse) {
     this->house = numberHouse;
 }
 
+int Case::getRent(int sumDice) const {
+    return 0*sumDice;
+}
+
 void Case::buy(Player* owner) {
 
 }
 
 void Case::payRent(Player* buyer){
+
+}
+
+void Case::payRent(Player* buyer, int sumDice) {
+
+}
+
+void Case::actionRelated(Player* p) {
 
 }
