@@ -2,6 +2,7 @@
 #define BOARD_H
 #include <string>
 #include <vector>
+#include <QOperatingSystemVersion>
 
 #include "player.h"
 #include "case.h"
