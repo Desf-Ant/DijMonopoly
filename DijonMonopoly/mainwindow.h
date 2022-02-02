@@ -74,7 +74,7 @@ private:
     void refreshPlayerUI(void);
     void refreshPlayerPhysical(void);
 public slots :
-    void initPlayerUI(std::vector<std::string> names);
+    void initPlayerUI(std::vector<std::string> names, std::vector<std::string> color);
     void receiveBuyEstate(bool answer);
     void whichCaseIsSelected(void);
 };

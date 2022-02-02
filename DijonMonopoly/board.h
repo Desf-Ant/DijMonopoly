@@ -51,7 +51,6 @@ public:
     void nextPlayer(void);
     void currentPlayerBuyCurrentEstate(void);
 
-    //void onEstateCase(class Estate* e, MainWindow* w);
     void onEstateCase(Case* e, MainWindow* w);
     void onGareCase(Case* g, MainWindow* w);
     void onCornerCase(class CornerCase* c, MainWindow* w);
@@ -60,7 +59,6 @@ public:
     void onDrawCase(class DrawCard* d, MainWindow* w);
 
     void refreshViewDelegate(MainWindow* w);
-//    void popUpBuyEstate(MainWindow* w, class Estate* e);
      void popUpBuy(MainWindow* w, Case* e);
 
     void popUpPayRent(MainWindow* w, Case* e, class Player* buyer, int sumDice=0);

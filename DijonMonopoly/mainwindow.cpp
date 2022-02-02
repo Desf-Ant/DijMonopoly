@@ -212,8 +212,12 @@ void MainWindow::initPlayer() {
     this->popPlayer->show();
 }
 
-void MainWindow::initPlayerUI(std::vector<std::string> names) {
+void MainWindow::initPlayerUI(std::vector<std::string> names, std::vector<std::string> color) {
     // Create all the ui for the player
+    std::cout << color.size() << std::endl;
+    for (int i=0; i<(int) color.size(); i++) {
+        std::cout << color.at(i) <<std::endl;
+    }
     for (int i=0; i< (int) names.size() ; i++) {
         QGraphicsTextItem* text = new QGraphicsTextItem( QString::fromStdString( names[i] ));
         QGraphicsTextItem* money = new QGraphicsTextItem( "2000 M" );

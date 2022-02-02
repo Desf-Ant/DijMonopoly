@@ -4,7 +4,7 @@ PopUpAddPlayer::PopUpAddPlayer(QWidget *parent): QMainWindow(parent)
 {
     this->parent = parent;
     this->setWindowTitle("Ajouter le nom des joueurs");
-    this->setGeometry(650,300,300,200);
+    this->setGeometry(650,300,400,200);
     this->setFixedSize(this->size());
     this->initComponent();
     this->initLayout();
@@ -37,7 +37,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante1->addItem("Rose");
     this->liste_deroulante1->addItem("Gris");
     this->liste_deroulante1->addItem("Orange");
-    QVariant val1 = this->liste_deroulante1->itemData(this->liste_deroulante1->currentIndex());
+    //QVariant val1 = this->liste_deroulante1->itemData(this->liste_deroulante1->currentIndex());
+    this->val1 = this->liste_deroulante1->itemData(this->liste_deroulante1->currentIndex());
     this->liste_deroulante2 = new QComboBox(this);
     this->liste_deroulante2->addItem("Rouge");
     this->liste_deroulante2->addItem("Bleu");
@@ -50,7 +51,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante2->addItem("Rose");
     this->liste_deroulante2->addItem("Gris");
     this->liste_deroulante2->addItem("Orange");
-    QVariant val2 = this->liste_deroulante2->itemData(this->liste_deroulante2->currentIndex());
+    //QVariant val2 = this->liste_deroulante2->itemData(this->liste_deroulante2->currentIndex());
+    this->val2 = this->liste_deroulante2->itemData(this->liste_deroulante2->currentIndex());
     this->liste_deroulante3 = new QComboBox(this);
     this->liste_deroulante3->addItem("Rouge");
     this->liste_deroulante3->addItem("Bleu");
@@ -63,7 +65,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante3->addItem("Rose");
     this->liste_deroulante3->addItem("Gris");
     this->liste_deroulante3->addItem("Orange");
-    QVariant val3 = this->liste_deroulante3->itemData(this->liste_deroulante3->currentIndex());
+    //QVariant val3 = this->liste_deroulante3->itemData(this->liste_deroulante3->currentIndex());
+    this->val3 = this->liste_deroulante3->itemData(this->liste_deroulante3->currentIndex());
     this->liste_deroulante4 = new QComboBox(this);
     this->liste_deroulante4->addItem("Rouge");
     this->liste_deroulante4->addItem("Bleu");
@@ -76,7 +79,8 @@ void PopUpAddPlayer::initComponent() {
     this->liste_deroulante4->addItem("Rose");
     this->liste_deroulante4->addItem("Gris");
     this->liste_deroulante4->addItem("Orange");
-    QVariant val4 = this->liste_deroulante4->itemData(this->liste_deroulante4->currentIndex());
+    //QVariant val4 = this->liste_deroulante4->itemData(this->liste_deroulante4->currentIndex());
+    this->val4 = this->liste_deroulante4->itemData(this->liste_deroulante4->currentIndex());
     this->button = new QPushButton("Nouvelle partie");
 }
 
@@ -106,27 +110,22 @@ void PopUpAddPlayer::initLayout() {
 
 void PopUpAddPlayer::initSlots() {
     QWidget::connect(this->button, SIGNAL(clicked()), this, SLOT(preparePlayer()));
-    //QWidget::connect(this->button, SIGNAL(clicked()), this, SLOT(playerColor()));
-    QWidget::connect(this, SIGNAL(newPlayerSignal(std::vector<std::string>)), this->parent, SLOT(initPlayerUI(std::vector<std::string>)));
-    // Manque la dernière la fonction QWidget::connect(this, SIGNAL(newPlayerColor(std::vector<std::string>)), this->parent, SLOT((std::vector<std::string>)));
+    QWidget::connect(this, SIGNAL(newPlayerSignal(std::vector<std::string>, std::vector<std::string>)), this->parent, SLOT(initPlayerUI(std::vector<std::string>, std::vector<std::string>)));
 }
 
 void PopUpAddPlayer::preparePlayer() {
     std::vector<std::string> names = std::vector<std::string>();
+    std::vector<std::string> color = std::vector<std::string>();
     names.push_back(this->player1->text().toStdString());
     names.push_back(this->player2->text().toStdString());
     names.push_back(this->player3->text().toStdString());
     names.push_back(this->player4->text().toStdString());
-    emit newPlayerSignal(names);
+    color.push_back(val1.toString().toStdString());
+    color.push_back(val2.toString().toStdString());
+    //color.push_back(val3.toString().toStdString());
+    color.push_back(this->liste_deroulante3->itemData(this->liste_deroulante3->currentIndex()).toString().toStdString());
+    color.push_back(val4.toString().toStdString());
+    emit newPlayerSignal(names, color);
     this->close();
 }
 
-void PopUpAddPlayer::playerColor() {
-    std::vector<std::string> color = std::vector<std::string>();
-    color.push_back(val1->toString().toStdString());
-    color.push_back(val2->toString().toStdString());
-    color.push_back(val3->toString().toStdString());
-    color.push_back(val4->toString().toStdString());
-    emit newPlayerColor(color);
-    this->close();
-}
