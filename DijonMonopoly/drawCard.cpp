@@ -24,7 +24,17 @@ typeDrawCard DrawCard::getTypeDrawCard() const{
 }
 
 std::string DrawCard::RecupFichiercom(){
-    QFile filecom ("../../../../DijonMonopoly/cartescom.txt");
+    auto current = QOperatingSystemVersion::current();
+    QString beginPath = "";
+    if (current >= QOperatingSystemVersion::MacOSSierra) {
+        std::cout << "system Mac" << current.currentType() << std::endl;
+        beginPath = "../../../../";
+    }
+    if (current >= QOperatingSystemVersion::Windows10) {
+        std::cout << "system Win" << std::endl;
+        beginPath = "../";
+    }
+    QFile filecom (beginPath+"DijonMonopoly/cartescom.txt");
     if (!filecom.open (QIODevice::ReadOnly | QIODevice::Text))
         return "NORMAL";
 
@@ -38,7 +48,17 @@ std::string DrawCard::RecupFichiercom(){
 }
 
 std::string DrawCard::RecupFichierchance(){
-    QFile filechance ("../../../../DijonMonopoly/carteschance.txt");
+    auto current = QOperatingSystemVersion::current();
+    QString beginPath = "";
+    if (current >= QOperatingSystemVersion::MacOSSierra) {
+        std::cout << "system Mac" << current.currentType() << std::endl;
+        beginPath = "../../../../";
+    }
+    if (current >= QOperatingSystemVersion::Windows10) {
+        std::cout << "system Win" << std::endl;
+        beginPath = "../";
+    }
+    QFile filechance (beginPath+"DijonMonopoly/carteschance.txt");
     if (!filechance.open (QIODevice::ReadOnly | QIODevice::Text))
         return "false";
 

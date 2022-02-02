@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include <math.h>
+#include <QOperatingSystemVersion>
 
 #include "enumHelper.h"
 #include "popupcard.h"
