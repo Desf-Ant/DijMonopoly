@@ -7,4 +7,6 @@ typedef enum colorEstate {Brown, LightBlue, Purple, Orange, Red, Yellow, Green, 
 
 typedef enum typeOfCase {CornerCase, Estate, Gare, Draw, Taxe, Company} typeOfCase ;
 
+typedef enum typeDrawCard { ComCard, ChanceCard } typeDrawCard;
+
 #endif // ENUMHELPER_H

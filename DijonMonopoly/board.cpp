@@ -159,6 +159,7 @@ void Board::gameTurn(MainWindow* w) {
         this->getCurrentPlayer()->advanceTo(this->getSumDice());
 
         // check on which case the player go
+        std::cout << this->getCaseOfCurrentPlayer()->getTypeCase() << std::endl;
         switch (this->getCaseOfCurrentPlayer()->getTypeCase()) {
         case typeOfCase::Company : {
             class Company* c = static_cast<class Company*>(this->getCaseOfCurrentPlayer());
@@ -179,7 +180,6 @@ void Board::gameTurn(MainWindow* w) {
             break;
         }
         case typeOfCase::Estate : {
-            //class Estate* e = static_cast<class Estate*>(this->getCaseOfCurrentPlayer());
             std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a Estate case : " << this->getCaseOfCurrentPlayer()->getName() << std::endl;
             this->onEstateCase(this->getCaseOfCurrentPlayer(),w);
             break;
@@ -191,7 +191,7 @@ void Board::gameTurn(MainWindow* w) {
         }
         case typeOfCase::Taxe : {
             class Taxe* t = static_cast<class Taxe*>(this->getCaseOfCurrentPlayer());
-            std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a company case : " << t->getName() << std::endl;
+            std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a Taxe case : " << t->getName() << std::endl;
             this->onTaxeCase(t,w);
             break;
         }
@@ -258,10 +258,13 @@ void Board::onCompanyCase(class Company *c, MainWindow* w) {
 }
 
 void Board::onDrawCase(class DrawCard* d, MainWindow* w) {
-    if (d->getTypeDrawCard() == 0 ){
+    std::cout << "draw carr" << std::endl;
+    if (d->getTypeDrawCard() == typeDrawCard::ComCard){
        d->DrawComCard();
+       std::cout << "comm" << std::endl;
     }
     else {
        d->DrawChanceCard();
+       std::cout << "chance" << std::endl;
     }
 }

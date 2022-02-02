@@ -7,17 +7,23 @@
 #include <fstream>
 #include <string>
 
+#include "enumHelper.h"
+
 DrawCard::DrawCard(){
 }
 
 DrawCard::DrawCard(int x, int y, int numero, typeDrawCard typeDraw) {
+    this->typeCase = typeOfCase::Draw;
     this->x = x;
     this->y = y;
     this->numero = numero;
     this->type = typeDraw;
     this->RecupFichierchance();
     this->RecupFichiercom();
+}
 
+typeOfCase DrawCard::getTypeCase(void) const {
+    return this->typeCase;
 }
 
 typeDrawCard DrawCard::getTypeDrawCard() const{
@@ -25,7 +31,7 @@ typeDrawCard DrawCard::getTypeDrawCard() const{
 }
 
 std::string DrawCard::RecupFichiercom(){
-    QFile filecom ("D:/antoi/Documents/Monopoly/DijMonopoly/DijonMonopoly/cartescom.txt");
+    QFile filecom ("../cartescom.txt");
     if (!filecom.open (QIODevice::ReadOnly | QIODevice::Text))
         return "NORMAL";
 
@@ -40,7 +46,7 @@ std::string DrawCard::RecupFichiercom(){
 }
 
 std::string DrawCard::RecupFichierchance(){
-    QFile filechance ("D:/antoi/Documents/Monopoly/DijMonopoly/DijonMonopoly/carteschance.txt");
+    QFile filechance ("../carteschance.txt");
     if (!filechance.open (QIODevice::ReadOnly | QIODevice::Text))
         return "false";
 

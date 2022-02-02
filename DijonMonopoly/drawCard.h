@@ -4,18 +4,18 @@
 #include <vector>
 #include "case.h"
 
-typedef enum typeDrawCard { ComCard, ChanceCard } typeDrawCard;
-
 class DrawCard : public Case {
 protected:
     std::vector <std::string> ComCard;
     std::vector <std::string> ChanceCard;
     typeDrawCard type;
+    typeOfCase typeCase;
 
 public:
     DrawCard();
     DrawCard(int x, int y, int numero, typeDrawCard typeDraw);
 
+    typeOfCase getTypeCase(void) const;
     typeDrawCard getTypeDrawCard(void) const;
     void Draw(typeDrawCard typeDraw);
     std::string RecupFichiercom();
