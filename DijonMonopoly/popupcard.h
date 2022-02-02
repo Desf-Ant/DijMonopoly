@@ -11,12 +11,13 @@
 #include <QImage>
 #include <QLabel>
 #include <QString>
+#include "drawCard.h"
 
 #include <iostream>
 #include <vector>
 #include <string>
 
-class PopUpCard : public QMainWindow, public DrawCard
+class PopUpCard : public QMainWindow
 {
     Q_OBJECT
 private :

@@ -228,7 +228,6 @@ void MainWindow::initPlayer() {
 
 void MainWindow::initPlayerUI(std::vector<std::string> names, std::vector<std::string> color) {
     // Create all the ui for the player
-    // std::cout << color.size() << std::endl;
     for (int i=0; i< (int) names.size() ; i++) {
         QColor col = QColor();
         if (color.at(i) == "Rouge") {

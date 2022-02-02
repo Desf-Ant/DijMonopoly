@@ -1,13 +1,6 @@
 #include "drawCard.h"
 #include <stdlib.h>
-#include <iostream>
-#include <QFile>
-#include <QTextStream>
-#include <QDir>
-#include <fstream>
-#include <string>
 
-#include "enumHelper.h"
 
 DrawCard::DrawCard(){
 }
@@ -31,7 +24,7 @@ typeDrawCard DrawCard::getTypeDrawCard() const{
 }
 
 std::string DrawCard::RecupFichiercom(){
-    QFile filecom ("../cartescom.txt");
+    QFile filecom ("../../../../DijonMonopoly/cartescom.txt");
     if (!filecom.open (QIODevice::ReadOnly | QIODevice::Text))
         return "NORMAL";
 
@@ -39,43 +32,42 @@ std::string DrawCard::RecupFichiercom(){
     while (!in.atEnd()){
         QString line = in.readLine();
         this->ComCard.push_back(line.toStdString());
-        // std::cout << line.toStdString() << std::endl;
     }
     filecom.close();
     return "true";
 }
 
 std::string DrawCard::RecupFichierchance(){
-    QFile filechance ("../carteschance.txt");
+    QFile filechance ("../../../../DijonMonopoly/carteschance.txt");
     if (!filechance.open (QIODevice::ReadOnly | QIODevice::Text))
         return "false";
 
     QTextStream in(&filechance);
-    //std::vector <std::string> ChanceCard;
     while (!in.atEnd()){
         QString line = in.readLine();
         this->ChanceCard.push_back(line.toStdString());
-        // std::cout << << std::endl;
     }
    // FAUT COPIER std::copy(line.begin(), line.end(),)
     filechance.close();
-    //std::cout << ChanceCard.size() << std::endl;
     return "true";
+}
+
+void DrawCard::draw(typeDrawCard typeDraw) {
+    PopUpCard* pop = new PopUpCard(nullptr, typeDraw);
+    pop->show();
 }
 
 std::string DrawCard::DrawChanceCard(){
     this->RecupFichierchance();
     std::cout << this->ChanceCard.size() << std::endl;
-    // std::string piocheChance = this->ChanceCard [(int)(rand()*ChanceCard.size())]; //BUG FONCTIONNE PAS ICI
-    std::string piocheChance = this->ChanceCard.at(14);
-    // std::cout << piocheChance << std::endl;
+    std::string piocheChance = this->ChanceCard.at((int)(arc4random()%ChanceCard.size()));
+    std::cout << piocheChance << std::endl;
     return piocheChance;
 }
 
 std::string DrawCard::DrawComCard(){
     this->RecupFichiercom();
-    //std::string piocheCom = ComCard [(int)(rand()*ComCard.size())];
-    std::string piocheCom = this->ComCard.at(14);
-    //std::cout << piocheCom << std::endl;
+    std::string piocheCom = this->ComCard.at((int)(arc4random()%ChanceCard.size()));
+    std::cout << piocheCom << std::endl;
     return piocheCom;
 }

@@ -36,6 +36,7 @@ public:
     virtual int getHouse(void) const;
     virtual std::string getPath(void) const;
     virtual void actionRelated(Player* p);
+    typeCornerCase getType(void) const;
 
     virtual void setOwner(Player* newOwner);
     virtual void setHouse(int numberHouse);

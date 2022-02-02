@@ -53,6 +53,10 @@ int Case::getRent(int sumDice) const {
     return 0*sumDice;
 }
 
+typeCornerCase Case::getType() const {
+    return typeCornerCase::Parc;
+}
+
 void Case::buy(Player* owner) {
 
 }

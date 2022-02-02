@@ -159,7 +159,6 @@ void Board::gameTurn(MainWindow* w) {
         this->getCurrentPlayer()->advanceTo(this->getSumDice());
 
         // check on which case the player go
-        std::cout << this->getCaseOfCurrentPlayer()->getTypeCase() << std::endl;
         switch (this->getCaseOfCurrentPlayer()->getTypeCase()) {
         case typeOfCase::Company : {
             class Company* c = static_cast<class Company*>(this->getCaseOfCurrentPlayer());
@@ -168,15 +167,15 @@ void Board::gameTurn(MainWindow* w) {
             break;
         }
         case typeOfCase::CornerCase : {
-            class CornerCase* c = static_cast<class CornerCase*>(this->getCaseOfCurrentPlayer());
-            std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a Corner case : " << c->getName() << ", " << c->getType() << std::endl;
-            this->onCornerCase(c,w);
+            //class CornerCase* c = static_cast<class CornerCase*>(this->getCaseOfCurrentPlayer());
+            std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a Corner case : " << this->getCaseOfCurrentPlayer()->getName() << ", " << this->getCaseOfCurrentPlayer()->getType() << std::endl;
+            this->onCornerCase(this->getCaseOfCurrentPlayer(),w);
             break;
         }
         case typeOfCase::Draw : {
             class DrawCard* d = static_cast<class DrawCard*>(this->getCaseOfCurrentPlayer());
             std::cout << "The player " << this->getCurrentPlayer()->getName() << " is on a Draw case : " << d->getTypeCase() << std::endl;
-            this->onDrawCase(d,w);
+            this->onDrawCase(d);
             break;
         }
         case typeOfCase::Estate : {
@@ -234,7 +233,7 @@ void Board::onGareCase(Case *g, MainWindow* w) {
     }
 }
 
-void Board::onCornerCase(class CornerCase *c, MainWindow* w) {
+void Board::onCornerCase(Case *c, MainWindow* w) {
     // make the right action related by the corner case
     c->actionRelated(this->getCurrentPlayer());
 }
@@ -257,14 +256,6 @@ void Board::onCompanyCase(class Company *c, MainWindow* w) {
     }
 }
 
-void Board::onDrawCase(class DrawCard* d, MainWindow* w) {
-    std::cout << "draw carr" << std::endl;
-    if (d->getTypeDrawCard() == typeDrawCard::ComCard){
-       d->DrawComCard();
-       std::cout << "comm" << std::endl;
-    }
-    else {
-       d->DrawChanceCard();
-       std::cout << "chance" << std::endl;
-    }
+void Board::onDrawCase(class DrawCard* d) {
+    d->draw(d->getTypeDrawCard());
 }

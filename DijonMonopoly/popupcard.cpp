@@ -26,12 +26,11 @@ void PopUpCard::initLayout() {
     DrawCard* dchance = new DrawCard();
     DrawCard* dcom = new DrawCard();
     label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    // std::cout << dchance->DrawChanceCard() << std::endl;
     if (typeDrawCard::ComCard) {
         label->setText (QString::fromStdString(dchance->DrawComCard()));
     }
     if (typeDrawCard::ChanceCard){
-        label->setText (QString::fromStdString(dchance->DrawChanceCard()));
+        label->setText (QString::fromStdString(dcom->DrawChanceCard()));
     }
     label->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
     this->formLayout->addWidget(this->button);

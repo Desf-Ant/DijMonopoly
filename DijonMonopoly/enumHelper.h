@@ -5,7 +5,7 @@ typedef enum typeCornerCase { Depart, Prison, Parc, Police } typeCornerCase;
 
 typedef enum colorEstate {Brown, LightBlue, Purple, Orange, Red, Yellow, Green, DarkBlue} colorEstate ;
 
-typedef enum typeOfCase {CornerCase, Estate, Gare, Draw, Taxe, Company} typeOfCase ;
+typedef enum typeOfCase {CornerCase=0, Estate=1, Gare=2, Draw=3, Taxe=4, Company=5} typeOfCase ;
 
 typedef enum typeDrawCard { ComCard, ChanceCard } typeDrawCard;
 

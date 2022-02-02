@@ -50,10 +50,10 @@ public:
 
     void onEstateCase(Case* e, MainWindow* w);
     void onGareCase(Case* g, MainWindow* w);
-    void onCornerCase(class CornerCase* c, MainWindow* w);
+    void onCornerCase(Case* c, MainWindow* w);
     void onTaxeCase(class Taxe* t, MainWindow* w);
     void onCompanyCase(class Company* c, MainWindow* w);
-    void onDrawCase(class DrawCard* d, MainWindow* w);
+    void onDrawCase(class DrawCard* d);
 
     void refreshViewDelegate(MainWindow* w);
      void popUpBuy(MainWindow* w, Case* e);
