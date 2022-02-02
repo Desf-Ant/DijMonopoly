@@ -69,6 +69,13 @@ void MainWindow::initSlots() {
 
 
 void MainWindow::initCases() {
+    auto current = QOperatingSystemVersion::current();
+    if (current >= QOperatingSystemVersion::MacOSSierra) {
+        std::cout << "system Mac" << current.currentType() << std::endl;
+    }
+    if (current >= QOperatingSystemVersion::Windows7) {
+        std::cout << "system Win" << std::endl;
+    }
     this->cases.push_back(this->scene->addPixmap(QPixmap("../Cases/depart.png")));
     this->cases[0]->setPos(997,717);
     this->cases.push_back(this->scene->addPixmap(QPixmap("../../../../Cases/vergy.png")));

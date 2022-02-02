@@ -13,6 +13,7 @@
 #include <QPixmap>
 #include <QPalette>
 #include <QColor>
+#include <QOperatingSystemVersion>
 
 #include "popupaddplayer.h"
 #include "popupbuy.h"
