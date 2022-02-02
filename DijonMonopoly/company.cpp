@@ -5,6 +5,10 @@ Company::Company()
 
 }
 
+Company::~Company() {
+    delete this->owner;
+}
+
 Company::Company(int x, int y, int numero, std::string name, double price, std::string path) {
     this->typeCase = typeOfCase::Company;
     this->x = x;

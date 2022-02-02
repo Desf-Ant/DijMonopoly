@@ -5,6 +5,10 @@ Estate::Estate()
 
 }
 
+Estate::~Estate() {
+    delete this->owner;
+}
+
 Estate::Estate(int x, int y, int numero, std::string name, colorEstate color, double price, std::vector<int> rents, std::string path) {
     this->typeCase = typeOfCase::Estate;
     this->owner = nullptr;

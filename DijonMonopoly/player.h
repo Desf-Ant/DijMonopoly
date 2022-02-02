@@ -19,6 +19,7 @@ private:
     bool isInJail;
 public:
     Player();
+    ~Player();
     Player(std::string name, std::string piece, int argent);
 
     void setName(std::string inputName);

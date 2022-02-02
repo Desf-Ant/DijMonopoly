@@ -12,12 +12,12 @@ private:
     std::string name;
     std::string path;
     colorEstate color;
-    Player* owner;
     std::vector<int> rents;
     double price;
     int house;
 public:
     Estate();
+    ~Estate();
     Estate(int x, int y, int numero, std::string name, colorEstate color, double price, std::vector<int> rents, std::string path);
 
     void checkRents(void);

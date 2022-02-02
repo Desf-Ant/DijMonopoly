@@ -16,6 +16,12 @@ Player::Player(std::string name, std::string piece, int money) {
     this->isInJail = false;
 }
 
+Player::~Player() {
+    for (int i = 0;i<(int)this->properties.size(); i++) {
+        delete this->properties.at(i);
+    }
+}
+
 void Player::setName(std::string inputName) {
     this->name = inputName;
 }

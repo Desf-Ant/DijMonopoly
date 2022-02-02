@@ -24,6 +24,7 @@ protected :
     int house;
 public:
     Case();
+    virtual ~Case();
     typeOfCase getTypeCase(void) const;
     QPointF getCoordCenter(void) const;
     virtual std::string getName(void) const;
